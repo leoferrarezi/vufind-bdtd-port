@@ -22,3 +22,11 @@
 .facet-group .collapsed::after {
   content: none;
 }
+
+/*
+ * Rodapé na largura total da página, como no legado: o bootstrap5 aplica ao elemento
+ * footer a largura máxima de .container (720–1320px).
+ */
+footer {
+  max-width: none;
+}
