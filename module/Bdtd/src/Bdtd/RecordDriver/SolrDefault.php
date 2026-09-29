@@ -189,6 +189,83 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     }
 
     /**
+     * Assuntos de um campo, no formato de getAllSubjectHeadings().
+     *
+     * @param string $field    Campo do Solr
+     * @param string $type     Tipo do assunto
+     * @param string $source   Vocabulário de origem
+     * @param bool   $extended Formato estendido (heading, type, source)?
+     *
+     * @return array
+     */
+    public function getSubjectsByField(string $field, string $type, string $source, bool $extended = false): array
+    {
+        return array_map(
+            fn ($heading) => $extended
+                ? ['heading' => [$heading], 'type' => $type, 'source' => $source]
+                : [$heading],
+            $this->getFieldsValues([$field], false)
+        );
+    }
+
+    /**
+     * Todos os assuntos: CNPq, inglês, espanhol e português.
+     *
+     * @param bool $extended Formato estendido?
+     *
+     * @return array
+     */
+    public function getAllSubjectHeadings($extended = false)
+    {
+        return array_merge(
+            $this->getSubjectsByField('dc.subject.cnpq.fl_str_mv', 'cnpq', 'cnpq', $extended),
+            $this->getSubjectsByField('dc.subject.eng.fl_str_mv', 'original', 'eng', $extended),
+            $this->getSubjectsByField('dc.subject.spa.fl_str_mv', 'original', 'spa', $extended),
+            $this->getSubjectsByField('dc.subject.por.fl_str_mv', 'original', 'por', $extended)
+        );
+    }
+
+    /**
+     * Assuntos CNPq.
+     *
+     * @return array
+     */
+    public function getCNPQSubjects(): array
+    {
+        return $this->getSubjectsByField('dc.subject.cnpq.fl_str_mv', 'cnpq', 'cnpq');
+    }
+
+    /**
+     * Assuntos em inglês.
+     *
+     * @return array
+     */
+    public function getEngSubjects(): array
+    {
+        return $this->getSubjectsByField('dc.subject.eng.fl_str_mv', 'original', 'eng');
+    }
+
+    /**
+     * Assuntos em espanhol.
+     *
+     * @return array
+     */
+    public function getSpaSubjects(): array
+    {
+        return $this->getSubjectsByField('dc.subject.spa.fl_str_mv', 'original', 'spa');
+    }
+
+    /**
+     * Assuntos em português.
+     *
+     * @return array
+     */
+    public function getPorSubjects(): array
+    {
+        return $this->getSubjectsByField('dc.subject.por.fl_str_mv', 'original', 'por');
+    }
+
+    /**
      * Identificador OAI-PMH do registro na origem.
      *
      * @return ?string
