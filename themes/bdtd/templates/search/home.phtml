@@ -1,0 +1,35 @@
+<?php
+  // BDTD: página inicial do legado (faixa com título e busca, texto institucional e parceiros).
+  // Contadores e atalhos entram com as páginas e scripts de que dependem.
+  $this->headTitle($this->translate('BDTD'));
+
+  // A busca fica dentro da faixa desta página, não no topo
+  $this->layout()->searchbox = false;
+  $this->layout()->disableDefaultNotices = true;
+  $this->layout()->layoutFull = true;
+
+  if (!isset($this->searchClassId)) {
+    $config = $this->config()->get('config');
+    $this->searchClassId = $config->Site->defaultSearchBackend ?? 'Solr';
+  }
+
+  $this->breadcrumbs()->disable();
+?>
+<div class="search-box">
+  <div class="container">
+    <div class="box-title">
+      <h1 class="bdtd-title">Biblioteca Digital Brasileira de <br> Teses e Dissertações</h1>
+      <p class="bdtd-subtitle h4">Acesso e visibilidade às teses e dissertações brasileiras</p>
+    </div>
+
+    <?php $this->slot('search-home-hero')->start() ?>
+      <?=$this->context($this)->renderInContext('search/searchbox.phtml', ['focusOnLoad' => true, 'ignoreHiddenFilterMemory' => true])?>
+    <?=$this->slot('search-home-hero')->end() ?>
+  </div>
+</div>
+
+<?=$this->notices()->renderNoticesForPosition('default')?>
+
+<div class="container">
+  <?=$this->render('content-home.phtml')?>
+</div>

@@ -167,7 +167,8 @@
     <?php endif; ?>
     <?=$this->breadcrumbs()->render()?>
     <div role="main" class="main">
-      <div id="content" class="container">
+      <?php /* BDTD: páginas com faixas na largura total (página inicial) usam container-fluid */ ?>
+      <div id="content" class="<?=$this->layout()->layoutFull ? 'container-fluid' : 'container'?>">
         <?php if (!($this->layout()->disableDefaultNotices ?? false)): ?>
           <?=$this->notices()->renderNoticesForPosition('default')?>
         <?php endif; ?>
