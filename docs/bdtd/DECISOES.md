@@ -19,3 +19,15 @@ Cada item: a decisão e o motivo.
 5. **Exportação em massa não portada.** O código anterior executava
    comandos do sistema com dados do usuário e buscava qualquer endereço
    informado na URL. Será reescrita sem esses problemas.
+6. **O que é de cada servidor fica fora do repositório.** Conexão com o
+   banco, endereço público do site, chaves (`ils_encryption_key`,
+   `HMACkey`, reCAPTCHA) e servidor de e-mail ficam numa camada de
+   configuração do próprio servidor, que herda `local/`.
+7. **Erros evidentes da produção são corrigidos.** Fuso `America/New_York`
+   passa a `America/Sao_Paulo`; `locale` `pt_br` passa a `pt_BR`; o
+   assistente `/Install`, aberto na produção, é desligado.
+8. **Opções sem efeito na produção não são portadas.** Ex.: links por DOI
+   sem serviço configurado.
+9. **Personalizações do núcleo viram configuração.** Tags desligadas por
+   `[Social]` (o legado apagava arquivos do VuFind); assunto do e-mail de
+   contato por `FeedbackForms.yaml` (o legado editava o `Form.php`).
