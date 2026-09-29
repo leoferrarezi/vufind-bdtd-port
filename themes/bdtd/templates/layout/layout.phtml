@@ -20,6 +20,16 @@
   if (!isset($this->layout()->searchbox)) {
     $this->layout()->searchbox = $this->context($this)->renderInContext('search/searchbox.phtml', []);
   }
+
+  // BDTD: barra do Governo Federal (config.ini [BdtdTheme] gov_bar)
+  $govBar = (bool)($this->config()->get('config')->BdtdTheme->gov_bar ?? false);
+  if ($govBar) {
+    $this->assetManager()->appendScriptLink(
+        src: 'https://barra.brasil.gov.br/barra_2.0.js',
+        attrs: ['async' => 'async'],
+        position: 'footer'
+    );
+  }
 ?>
 <html lang="<?=$this->layout()->userLang?>"<?php if ($this->layout()->rtl): ?> dir="rtl"<?php endif; ?>>
   <head>
@@ -148,6 +158,13 @@
   </head>
   <body class="template-dir-<?=$this->templateDir?> template-name-<?=$this->templateName?> <?=$this->layoutClass('offcanvas-row')?><?php if ($this->layout()->rtl): ?> rtl<?php endif; ?>">
     <?=$this->cookieConsent()->render('bottom')?>
+    <?php if ($govBar): /* BDTD: barra do Governo Federal, preenchida pelo barra_2.0.js */ ?>
+      <div id="barra-brasil" class="hidden-print">
+        <ul id="menu-barra-temp">
+          <li><a href="http://brasil.gov.br">Portal do Governo Brasileiro</a></li>
+        </ul>
+      </div>
+    <?php endif; ?>
     <?php /* BDTD: classes de navbar no header, como no legado (o CSS do tema usa header.navbar) */ ?>
     <header class="navbar navbar-expand-lg hidden-print">
       <?php if (isset($this->layout()->srmessage)): // message for benefit of screen-reader users ?>
