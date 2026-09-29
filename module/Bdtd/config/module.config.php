@@ -1,10 +1,24 @@
 <?php
 
 /**
- * Configuração do módulo Bdtd (rotas, controllers e plugins entram nas
- * próximas etapas).
+ * Configuração do módulo Bdtd.
  */
 
 namespace Bdtd\Module\Configuration;
 
-return [];
+return [
+    'vufind' => [
+        'plugin_managers' => [
+            // Registros do Solr passam a usar o driver da BDTD
+            'recorddriver' => [
+                'factories' => [
+                    \Bdtd\RecordDriver\SolrDefault::class => \VuFind\RecordDriver\SolrDefaultFactory::class,
+                ],
+                'aliases' => [
+                    'solrdefault' => \Bdtd\RecordDriver\SolrDefault::class,
+                    \VuFind\RecordDriver\SolrDefault::class => \Bdtd\RecordDriver\SolrDefault::class,
+                ],
+            ],
+        ],
+    ],
+];
