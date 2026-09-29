@@ -1,0 +1,24 @@
+/*
+ * BDTD: ajustes de compatibilidade Bootstrap 3 → 5 (VuFind 11).
+ * Carregado depois de style.css e custom.css, que ficam iguais ao legado. Cada
+ * correção entra aqui, comentada, junto com o template que a exige.
+ */
+
+/*
+ * O CSS legado usa a fonte "FontAwesome" (versão 4) em pseudo-elementos. O nome passa
+ * a apontar para a fonte sólida do FontAwesome 7 que vem com o bootstrap5; os códigos
+ * usados (\f055 \f056 \f0dc \f106 \f107) são os mesmos.
+ */
+@font-face {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  font-display: block;
+  src: url("../../bootstrap5/css/vendor/font-awesome/webfonts/fa-solid-900.woff2") format("woff2");
+}
+
+/* Facetas: o VuFind 11 já desenha a seta de abrir/fechar; a do CSS legado duplicava */
+.facet-group [data-toggle="collapse"]::after,
+.facet-group .collapsed::after {
+  content: none;
+}
