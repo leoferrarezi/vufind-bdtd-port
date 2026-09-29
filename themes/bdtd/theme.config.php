@@ -18,4 +18,11 @@ return [
         ['file' => 'bdtd-bs5.css'],
     ],
     'favicon' => 'icons/favicon.ico',
+    // Ícones do tema (no legado, Unicons e glyphicons via CDN); o FontAwesome 7 já
+    // vem no bootstrap5. Uso: $this->icon('bdtd-home').
+    'icons' => [
+        'aliases' => [
+            'bdtd-home' => 'FontAwesome:house',
+        ],
+    ],
 ];
