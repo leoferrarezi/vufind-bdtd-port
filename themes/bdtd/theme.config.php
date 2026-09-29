@@ -5,7 +5,8 @@
  *
  * Estende o bootstrap5 do VuFind. O CSS do legado (style.css, compilado de
  * scss/style.scss, e custom.css) é carregado depois do compiled.css do
- * bootstrap5, sem alteração; bdtd-bs5.css traz os ajustes de compatibilidade.
+ * bootstrap5, sem alteração. bdtd-bs3.css (antes dele) repõe padrões do Bootstrap 3 que
+ * o CSS legado pressupõe; bdtd-bs5.css (depois) traz os ajustes de compatibilidade.
  * As fontes são servidas pelo próprio site (bdtd-fonts.css).
  */
 return [
@@ -13,6 +14,7 @@ return [
     // Sem 'priority': saem depois do CSS do tema pai, na ordem abaixo.
     'css' => [
         ['file' => 'bdtd-fonts.css'],
+        ['file' => 'bdtd-bs3.css'],
         ['file' => 'style.css'],
         ['file' => 'custom.css'],
         ['file' => 'bdtd-bs5.css'],

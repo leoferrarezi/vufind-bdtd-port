@@ -39,4 +39,20 @@ footer {
 }
 .search-form .searchForm-query .search-input {
   width: 100%;
+  max-width: none;
+}
+.search-form #searchForm_type {
+  width: auto;
+}
+#searchForm.searchForm {
+  margin: 0;
+}
+/*
+ * Ícone do link "Busca avançada" do tamanho do fa-plus-circle do FontAwesome 4
+ * (círculo de 0,857em); o do FontAwesome 7 ocupa 1,25em de largura.
+ */
+.search-form .advanced-search-link .icon {
+  width: auto;
+  font-size: 0.857143em;
+  line-height: 1.166667;
 }
