@@ -361,6 +361,92 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     }
 
     /**
+     * Tipo de acesso (aberto, embargado etc.).
+     *
+     * @return PublicationDetails[]
+     */
+    public function getAccessType(): array
+    {
+        return $this->publishersFrom('eu_rights_str_mv');
+    }
+
+    /**
+     * Nível de acesso (primeiro valor).
+     *
+     * @return string
+     */
+    public function getAccessLevel(): string
+    {
+        return $this->getFieldValue('eu_rights_str_mv');
+    }
+
+    /**
+     * Identificador persistente dARK. Registros recuperados da oasisbr-api
+     * podem não ter o campo.
+     *
+     * @return string
+     */
+    public function getDarkID(): string
+    {
+        return $this->getFieldsValuesDefault(['dc.identifier.dark.fl_str_mv'])[0] ?? '';
+    }
+
+    /**
+     * Resumo em português.
+     *
+     * @return array
+     */
+    public function getAbstractPor(): array
+    {
+        return $this->getFieldsValues(['dc.description.resumo.por.fl_txt_mv'], false);
+    }
+
+    /**
+     * Resumo em inglês.
+     *
+     * @return array
+     */
+    public function getAbstractEng(): array
+    {
+        return $this->getFieldsValues(['dc.description.abstract.eng.fl_txt_mv'], false);
+    }
+
+    /**
+     * Resumo em espanhol (no legado o método se chamava getAbstracSpa e o
+     * resumo em espanhol nunca aparecia).
+     *
+     * @return array
+     */
+    public function getAbstractSpa(): array
+    {
+        return $this->getFieldsValues(['dc.description.abstract.spa.fl_txt_mv'], false);
+    }
+
+    /**
+     * Citação informada pela instituição.
+     *
+     * @return array
+     */
+    public function getCitation(): array
+    {
+        return $this->getFieldsValues(['dc.identifier.citation.fl_str_mv']);
+    }
+
+    /**
+     * Links de acesso ao documento. As URLs vêm dos metadados coletados das
+     * instituições e vão direto para o href: só http e https são aceitos
+     * (descarta javascript:, data: etc.).
+     *
+     * @return array
+     */
+    public function getURLs()
+    {
+        return array_values(
+            array_filter(parent::getURLs(), fn ($link) => $this->isHttpUrl($link['url'] ?? ''))
+        );
+    }
+
+    /**
      * Identificador OAI-PMH do registro na origem.
      *
      * @return ?string
@@ -391,6 +477,18 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     protected function numberedFields(string $pattern, int $count): array
     {
         return array_map(fn ($i) => sprintf($pattern, $i), range(1, $count));
+    }
+
+    /**
+     * A URL é http ou https?
+     *
+     * @param mixed $url URL
+     *
+     * @return bool
+     */
+    protected function isHttpUrl($url): bool
+    {
+        return is_string($url) && preg_match('~^https?://~i', trim($url)) === 1;
     }
 
     /**
