@@ -28,6 +28,13 @@ return [
                     'dublincore' => \Bdtd\MetadataVocabulary\DublinCore::class,
                 ],
             ],
+            // Campos exibidos na página do registro (escolhidos pelo driver)
+            'recorddataformatter_specs' => [
+                'factories' => [
+                    \Bdtd\RecordDataFormatter\Specs\Bdtd::class
+                        => \VuFind\RecordDataFormatter\Specs\DefaultRecordFactory::class,
+                ],
+            ],
         ],
     ],
 ];

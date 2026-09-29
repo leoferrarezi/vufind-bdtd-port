@@ -34,6 +34,16 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     public const NA_MESSAGE = 'Não Informado pela instituição';
 
     /**
+     * Classe com os campos exibidos na página do registro.
+     *
+     * @return ?string
+     */
+    public function getRecordDataFormatterSpecClass(): ?string
+    {
+        return \Bdtd\RecordDataFormatter\Specs\Bdtd::class;
+    }
+
+    /**
      * Valores, sem repetição, de um conjunto de campos do Solr.
      *
      * @param array $fields Campos
