@@ -23,6 +23,7 @@ return [
     'icons' => [
         'aliases' => [
             'bdtd-home' => 'FontAwesome:house',
+            'bdtd-advanced' => 'FontAwesome:circle-plus',
         ],
     ],
 ];
