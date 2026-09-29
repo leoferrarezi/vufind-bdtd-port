@@ -31,3 +31,8 @@ Cada item: a decisão e o motivo.
 9. **Personalizações do núcleo viram configuração.** Tags desligadas por
    `[Social]` (o legado apagava arquivos do VuFind); assunto do e-mail de
    contato por `FeedbackForms.yaml` (o legado editava o `Form.php`).
+10. **A oasisbr-api não é usada.** O serviço foi descontinuado. O sistema
+    anterior a consultava para achar registros com ID alterado ou removidos
+    do índice (editando o núcleo do VuFind) e em gráficos do tema; esse
+    recurso não é portado, e o que dependia dela no tema é revisto página a
+    página.
