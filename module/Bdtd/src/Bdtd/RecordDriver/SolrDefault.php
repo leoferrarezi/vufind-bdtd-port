@@ -79,6 +79,116 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     }
 
     /**
+     * Autores sem repetição, com o perfil Lattes de cada um.
+     *
+     * @param array $dataFields Dados extras por autor (ver getAuthorDataFields)
+     *
+     * @return array
+     */
+    public function getDeduplicatedAuthors($dataFields = ['profile'])
+    {
+        return parent::getDeduplicatedAuthors($dataFields);
+    }
+
+    /**
+     * Perfis Lattes dos autores.
+     *
+     * @return array
+     */
+    public function getPrimaryAuthorsProfiles(): array
+    {
+        return $this->getFieldsValues(['dc.contributor.authorLattes.fl_str_mv'], false);
+    }
+
+    /**
+     * Orientadores, coorientadores e banca, cada um com os dados extras pedidos
+     * (por padrão, o perfil Lattes). Usa get<Tipo>Authors e get<Tipo>AuthorsProfiles.
+     *
+     * @param array $dataFields Dados extras por pessoa
+     *
+     * @return array
+     */
+    public function getContributors(array $dataFields = ['profile']): array
+    {
+        $contributors = [];
+        foreach (['advisor', 'coadvisor', 'referee'] as $type) {
+            $contributors[$type] = $this->getAuthorDataFields($type, $dataFields);
+        }
+        return $contributors;
+    }
+
+    /**
+     * Orientadores.
+     *
+     * @return array
+     */
+    public function getAdvisorAuthors(): array
+    {
+        return $this->getFieldsValues(
+            ['dc.contributor.advisor1.fl_str_mv', 'dc.contributor.advisor2.fl_str_mv']
+        );
+    }
+
+    /**
+     * Perfis Lattes dos orientadores.
+     *
+     * @return array
+     */
+    public function getAdvisorAuthorsProfiles(): array
+    {
+        return $this->getFieldsValues(
+            ['dc.contributor.advisor1Lattes.fl_str_mv', 'dc.contributor.advisor2Lattes.fl_str_mv'],
+            false
+        );
+    }
+
+    /**
+     * Coorientadores.
+     *
+     * @return array
+     */
+    public function getCoadvisorAuthors(): array
+    {
+        return $this->getFieldsValues(['dc.contributor.co.fl_str_mv'], false);
+    }
+
+    /**
+     * Perfis Lattes dos coorientadores.
+     *
+     * @return array
+     */
+    public function getCoadvisorAuthorsProfiles(): array
+    {
+        return $this->getFieldsValues(
+            ['dc.contributor.advisor-co1Lattes.fl_str_mv', 'dc.contributor.advisor-co2Lattes.fl_str_mv'],
+            false
+        );
+    }
+
+    /**
+     * Membros da banca.
+     *
+     * @return array
+     */
+    public function getRefereeAuthors(): array
+    {
+        return $this->getFieldsValues($this->numberedFields('dc.contributor.referee%d.fl_str_mv', 5));
+    }
+
+    /**
+     * Perfis Lattes dos membros da banca.
+     *
+     * @return array
+     */
+    public function getRefereeAuthorsProfiles(): array
+    {
+        return $this->getFieldsValues(
+            $this->numberedFields('dc.contributor.referee%dLattes.fl_str_mv', 5),
+            false
+        );
+    }
+
+    /**
      * Identificador OAI-PMH do registro na origem.
      *
      * @return ?string
@@ -96,5 +206,18 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     public function getRepositoryID(): ?string
     {
         return $this->getFieldsValuesDefault(['repository_id_str'])[0] ?? null;
+    }
+
+    /**
+     * Nomes de campos numerados (ex.: referee1 a referee5).
+     *
+     * @param string $pattern Padrão sprintf com %d
+     * @param int    $count   Quantidade
+     *
+     * @return array
+     */
+    protected function numberedFields(string $pattern, int $count): array
+    {
+        return array_map(fn ($i) => sprintf($pattern, $i), range(1, $count));
     }
 }
