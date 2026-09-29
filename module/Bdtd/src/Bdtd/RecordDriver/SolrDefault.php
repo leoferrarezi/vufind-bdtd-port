@@ -13,6 +13,8 @@
 
 namespace Bdtd\RecordDriver;
 
+use VuFind\RecordDriver\Response\PublicationDetails;
+
 /**
  * Estende o SolrDefault do VuFind com os campos de teses e dissertações
  * (índice no formato LA Referencia / DSpace). Os métodos entram por partes.
@@ -266,6 +268,99 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     }
 
     /**
+     * Converte nomes em objetos PublicationDetails (usados pelo template de
+     * detalhes de publicação do VuFind).
+     *
+     * @param array $names Nomes
+     *
+     * @return PublicationDetails[]
+     */
+    public function getPublicationDetailsByPublishers(array $names): array
+    {
+        return array_map(fn ($name) => new PublicationDetails('', $name, ''), $names);
+    }
+
+    /**
+     * Instituição de defesa.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getRootPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.none.fl_str_mv');
+    }
+
+    /**
+     * Programa de pós-graduação.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getProgramPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.program.fl_str_mv');
+    }
+
+    /**
+     * Departamento.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getDepartmentPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.department.fl_str_mv');
+    }
+
+    /**
+     * País.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getCountryPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.country.fl_str_mv');
+    }
+
+    /**
+     * Área do conhecimento.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getKnowledgeareaPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.knowledgearea.fl_str_mv');
+    }
+
+    /**
+     * Código do programa.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getProgramIDPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.programID.fl_str_mv');
+    }
+
+    /**
+     * Área de avaliação.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getAreaAvaliacaoPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.areaavaliacao.fl_str_mv');
+    }
+
+    /**
+     * Grande área.
+     *
+     * @return PublicationDetails[]
+     */
+    public function getGrandeAreaPublishers(): array
+    {
+        return $this->publishersFrom('dc.publisher.grandearea.fl_str_mv');
+    }
+
+    /**
      * Identificador OAI-PMH do registro na origem.
      *
      * @return ?string
@@ -296,5 +391,17 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     protected function numberedFields(string $pattern, int $count): array
     {
         return array_map(fn ($i) => sprintf($pattern, $i), range(1, $count));
+    }
+
+    /**
+     * Valores de um campo como PublicationDetails (ou NA_MESSAGE).
+     *
+     * @param string $field Campo
+     *
+     * @return PublicationDetails[]
+     */
+    protected function publishersFrom(string $field): array
+    {
+        return $this->getPublicationDetailsByPublishers($this->getFieldsValues([$field]));
     }
 }
