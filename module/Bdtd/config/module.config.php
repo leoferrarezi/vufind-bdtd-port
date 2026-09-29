@@ -19,6 +19,15 @@ return [
                     \VuFind\RecordDriver\SolrDefault::class => \Bdtd\RecordDriver\SolrDefault::class,
                 ],
             ],
+            // Meta tags Dublin Core com o resumo (DC.description)
+            'metadatavocabulary' => [
+                'factories' => [
+                    \Bdtd\MetadataVocabulary\DublinCore::class => \Laminas\ServiceManager\Factory\InvokableFactory::class,
+                ],
+                'aliases' => [
+                    'dublincore' => \Bdtd\MetadataVocabulary\DublinCore::class,
+                ],
+            ],
         ],
     ],
 ];
