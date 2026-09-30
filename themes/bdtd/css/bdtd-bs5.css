@@ -17,10 +17,113 @@
   src: url("../../bootstrap5/css/vendor/font-awesome/webfonts/fa-solid-900.woff2") format("woff2");
 }
 
-/* Facetas: o VuFind 11 já desenha a seta de abrir/fechar; a do CSS legado duplicava */
-.facet-group [data-toggle="collapse"]::after,
-.facet-group .collapsed::after {
-  content: none;
+/*
+ * Facetas da lateral com as medidas do legado: o VuFind 11 usa ul/li e span.facet >
+ * a.main-link onde o VuFind 7 tinha a.facet, e data-bs-toggle no lugar de data-toggle.
+ */
+@media (min-width: 768px) {
+  .sidebar.left {
+    padding-right: 1rem;
+  }
+}
+.facet-group {
+  --bs-border-color: #ddd;
+}
+/*
+ * Seta de abrir/fechar do CSS legado (fechada: .collapsed::after do custom.css), com o
+ * tamanho e a posição da seta do FontAwesome 4 (a do 7 é maior e ocupa 0,75em)
+ */
+.facet-group .title {
+  display: block;
+}
+.facet-group .title::after {
+  float: right;
+  width: 0.818em;
+  font-family: FontAwesome;
+  font-size: 0.786em;
+  line-height: 1.5rem;
+  text-align: center;
+}
+.facet-group .title:not(.collapsed)::after {
+  content: "\f106";
+  position: relative;
+  top: 1px;
+}
+.facet-group .facet {
+  padding: 0.5rem;
+  align-items: normal;
+}
+.facet-group .facet .main-link {
+  align-items: normal;
+  gap: 0;
+  color: inherit;
+  text-decoration: none;
+}
+.facet-group .facet .text {
+  padding-inline-start: 0;
+}
+/* :where() para não passar à frente do .facet-group .active do custom.css */
+:where(.facet-group) .js-facet-item {
+  color: #828282;
+  border-radius: 4px;
+}
+.facet-group .js-facet-item:hover {
+  background-color: rgba(var(--color-rgb-secondary-base), 0.2);
+}
+/* Faceta aplicada com as cores do custom.css (o bootstrap5 usa .facet-group .facet.active) */
+.facet-group .facet.active {
+  background-color: rgba(var(--color-rgb-secondary-base), 0.2);
+  color: #936a2b;
+}
+.facet-group .facet.active .main-link {
+  color: inherit;
+}
+/* Selo com as medidas do Bootstrap 3 / VuFind 7 */
+.facet .badge {
+  --bs-badge-padding-x: 7px;
+  --bs-badge-padding-y: 3px;
+  --bs-badge-font-size: 12px;
+  --bs-badge-border-radius: 10px;
+  min-width: 10px;
+  max-height: 19px;
+  line-height: 1.2;
+}
+/*
+ * Botões "Mais ..." e "menos ..." do truncate.js com o visual dos a.btn .outlined-* do
+ * legado: os estilos do bootstrap5 para .more-btn/.less-btn passam à frente do CSS legado.
+ */
+.facet-group .narrow-toggle.more-btn,
+.facet-group .narrow-toggle.less-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px auto 0;
+  padding: 0 24px;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: var(--color-hex-primary-base);
+  background-color: transparent;
+  border: 2px solid var(--color-hex-primary-base);
+  border-radius: 4px;
+  box-shadow: none;
+  transition: all 0.2s ease-out;
+}
+/* "menos ..." como .outlined-secondary (o truncate.js dá as mesmas classes aos dois botões) */
+.facet-group .narrow-toggle.less-btn {
+  color: var(--color-hex-secondary-base);
+  border-color: var(--color-hex-secondary-base);
+}
+.facet-group .narrow-toggle.more-btn:hover {
+  color: var(--color-neutral-50);
+  background-color: var(--color-hex-primary-base);
+}
+.facet-group .narrow-toggle.less-btn:hover {
+  color: var(--color-neutral-50);
+  background-color: var(--color-hex-secondary-base);
+}
+/* Botão "Definir" do ano com a margem do .btn-slider do custom.css */
+.facet-range-form input.btn-slider {
+  margin-top: 16px;
 }
 
 /*
@@ -146,8 +249,8 @@ footer {
 .form-disabled .btn[disabled] {
   border-color: transparent;
 }
-/* Barra de anos com as medidas do bootstrap-slider do legado */
-.adv-search-form .slider-container {
+/* Barra de anos (busca avançada e lateral) com as medidas do bootstrap-slider do legado */
+.slider-container {
   padding: 12px 10px 9px;
 }
 .slider-container .noUi-horizontal .noUi-connects {
