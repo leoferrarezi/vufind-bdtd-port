@@ -77,6 +77,23 @@ footer {
   padding-right: 0.5rem;
 }
 
+/* Resultados: card com as medidas do VuFind 7 (número em 2rem, link e selo sem os ajustes do
+   VuFind 11) */
+.result.card-results {
+  align-items: normal;
+}
+.result .record-number {
+  flex: 0 1 2rem;
+  min-width: 0;
+  text-align: center;
+}
+.result .fulltext {
+  display: inline;
+}
+.result .format {
+  margin-bottom: 0;
+}
+
 /*
  * Busca avançada: o advanced_search.js do VuFind 11 usa classes (adv-group,
  * adv-group-match, adv-term-type, #groupPlaceHolder, clear-btn) que o bootstrap5

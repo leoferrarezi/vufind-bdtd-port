@@ -4,10 +4,11 @@
  * continuam prevalecendo onde definem algo.
  */
 
-/* Cor do texto do Bootstrap 3 (#333) */
+/* Cor do texto do Bootstrap 3 (#333); termos destacados em preto, como no legado */
 :root {
   --bs-body-color: #333;
   --bs-body-color-rgb: 51, 51, 51;
+  --bs-highlight-color: #000;
 }
 
 /* Campos e botões herdam cor e peso da fonte, como no Bootstrap 3 */
