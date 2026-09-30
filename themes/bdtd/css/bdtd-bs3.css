@@ -206,6 +206,19 @@ ul {
   border: 1px solid #ddd;
   border-bottom-color: transparent;
 }
+/* Com .nav-link (VuFind 11): as mesmas medidas e cores, com a aba ativa em a.nav-link.active */
+.nav-tabs {
+  --bs-nav-tabs-border-color: #ddd;
+  --bs-nav-tabs-border-radius: 4px;
+  --bs-nav-tabs-link-hover-border-color: #eee #eee #ddd;
+  --bs-nav-tabs-link-active-color: #555;
+  --bs-nav-tabs-link-active-bg: #fff;
+  --bs-nav-tabs-link-active-border-color: #ddd #ddd transparent;
+}
+.nav-tabs > li > a.nav-link {
+  display: block;
+  margin-bottom: 0;
+}
 
 /* Menus suspensos do Bootstrap 3 (itens li > a, sem .dropdown-item; sem a seta do toggle) */
 .dropdown-menu {
@@ -326,4 +339,26 @@ select.form-control {
 }
 .page-link {
   line-height: 1.42857143;
+}
+
+/*
+ * Tabelas do Bootstrap 3: células com 8px, altura de linha 1,42857 e borda superior #ddd,
+ * sem fundo próprio (as listras do CSS legado ficam no tr) e com a cor do texto
+ */
+.table {
+  --bs-table-color: #333;
+  --bs-table-bg: transparent;
+  --bs-table-striped-color: #333;
+  --bs-table-striped-bg: transparent;
+  margin-bottom: 20px;
+}
+.table > :not(caption) > * > * {
+  padding: 8px;
+  line-height: 1.42857143;
+  border-top: 1px solid #ddd;
+  border-bottom-width: 0;
+}
+/* Tabela de metadados do registro (.citation) com os nomes dos campos à direita, como no VuFind 7 */
+.citation th {
+  text-align: right;
 }
