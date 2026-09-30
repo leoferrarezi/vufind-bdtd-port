@@ -32,6 +32,13 @@ return [
                     'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'diretrizes'],
                 ],
             ],
+            'technology-home' => [
+                'type' => \Laminas\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/Technology/Home',
+                    'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'technology'],
+                ],
+            ],
         ],
     ],
     'vufind' => [
