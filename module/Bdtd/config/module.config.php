@@ -46,6 +46,13 @@ return [
                     'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'faq'],
                 ],
             ],
+            'datasources-home' => [
+                'type' => \Laminas\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/datasources/home',
+                    'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'datasources'],
+                ],
+            ],
         ],
     ],
     'vufind' => [
