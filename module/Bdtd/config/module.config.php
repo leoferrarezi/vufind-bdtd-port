@@ -7,6 +7,19 @@
 namespace Bdtd\Module\Configuration;
 
 return [
+    // Páginas institucionais: mesmos endereços do legado, exibidas pelo ContentController
+    // do VuFind (templates em themes/bdtd/templates/content/<página>.phtml)
+    'router' => [
+        'routes' => [
+            'about-home' => [
+                'type' => \Laminas\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/about/home',
+                    'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'about'],
+                ],
+            ],
+        ],
+    ],
     'vufind' => [
         'plugin_managers' => [
             // Registros do Solr passam a usar o driver da BDTD
