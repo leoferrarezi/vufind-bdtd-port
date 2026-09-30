@@ -53,6 +53,13 @@ return [
                     'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'datasources'],
                 ],
             ],
+            'indicators-home' => [
+                'type' => \Laminas\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/indicators/home',
+                    'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'indicators'],
+                ],
+            ],
         ],
     ],
     'vufind' => [

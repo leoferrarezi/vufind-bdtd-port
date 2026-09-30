@@ -35,4 +35,5 @@ Cada item: a decisão e o motivo.
     anterior a consultava para achar registros com ID alterado ou removidos
     do índice (editando o núcleo do VuFind) e em gráficos do tema; esse
     recurso não é portado, e o que dependia dela no tema é revisto página a
-    página.
+    página. Na página de indicadores, a aba de evolução (oculta na produção)
+    não é portada; os demais gráficos usam a API de busca do próprio VuFind.
