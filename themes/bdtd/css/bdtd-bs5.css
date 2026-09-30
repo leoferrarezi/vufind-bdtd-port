@@ -148,6 +148,29 @@ footer {
 }
 
 /*
+ * Busca avançada: ícones FontAwesome dos contadores e atalhos com a largura dos do
+ * FontAwesome 4 do legado (o 7 dá 1,25em a todos), para as caixas terem as mesmas medidas.
+ */
+.search-box .indicators .fa,
+.search-info .fa {
+  width: 1em;
+}
+.search-box .indicators .fa-university,
+.search-info .fa-line-chart {
+  width: 1.142857em;
+}
+.search-box .indicators .fa-book {
+  width: 0.928571em;
+}
+.search-box .indicators .fa-file-text,
+.search-box .indicators .fa-file {
+  width: 0.857143em;
+}
+.search-info .fa-laptop {
+  width: 1.071429em;
+}
+
+/*
  * Barra do Governo Federal: aparência provisória até o barra_2.0.js carregar e
  * preencher a barra (no legado eram estilos inline que o próprio script removia).
  */

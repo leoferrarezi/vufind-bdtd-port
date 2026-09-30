@@ -3,7 +3,7 @@
   // do bootstrap5/templates/search/advanced/layout.phtml (VuFind 11.1). Acrescenta as
   // classes que o advanced_search.js do VuFind 11 usa (adv-group, adv-group-match,
   // adv-term-type, clear-btn); o visual delas vem do CSS legado (ajustes em bdtd-bs5.css).
-  // Contadores e atalhos entram com as páginas e scripts de que dependem.
+  // Contadores (indicators-home.js) e atalhos como no legado.
 
   // Set page title.
   $this->headTitle($this->translate('Advanced Search'));
@@ -27,6 +27,8 @@
     $searchDetails = $groups = false;
     $hiddenFilters = $this->searchTabs()->getHiddenFilters($this->searchClassId, true);
   }
+
+  $this->assetManager()->appendScriptLink('indicators-home.js');
 
   // Step 1: Load the javascript
   $this->assetManager()->appendScriptLink(
@@ -75,6 +77,38 @@
           <h1 class="bdtd-title">Biblioteca Digital Brasileira de Teses e Dissertações</h1>
           <h4 class="bdtd-subtitle">Acesso e visibilidade às teses e dissertações brasileiras</h4>
         </div>
+      </div>
+    </div>
+    <?php /* Contadores preenchidos pelo indicators-home.js (API de busca); no legado os links
+       para os resultados eram relativos e davam 404 nesta página */ ?>
+    <?php $resultsUrl = $this->url('search-results'); ?>
+    <div class="indicators text-primary">
+      <div class="item">
+        <i class="fa fa-university"></i>
+        <a href="<?=$this->url('datasources-home')?>" class="data">
+          <span id="institution" class="main-highlight">000</span>
+          <span>Instituições</span>
+        </a>
+      </div>
+      <div class="item"> <i class="fa fa-book"></i>
+        <a href="<?=$this->escapeHtmlAttr($resultsUrl . '?limit=0&lookfor=%2A%3A%2A&type=AllFields&filter%5B%5D=format%3A%22doctoralThesis%22')?>" class="data">
+          <span id="doctorThesis" class="main-highlight">000</span>
+          <span>Teses</span>
+        </a>
+      </div>
+      <div class="item">
+        <i class="fa fa-file-text" aria-hidden="true"></i>
+        <a href="<?=$this->escapeHtmlAttr($resultsUrl . '?limit=0&lookfor=%2A%3A%2A&type=AllFields&filter%5B%5D=format%3A%22masterThesis%22')?>" class="data">
+          <span id="masterThesis" class="main-highlight">000</span>
+          <span>Dissertações</span>
+        </a>
+      </div>
+      <div class="item">
+        <i class="fa fa-file" aria-hidden="true"></i>
+        <a href="<?=$this->escapeHtmlAttr($resultsUrl)?>" class="data">
+          <span id="total" class="main-highlight">000</span>
+          <span>Documentos</span>
+        </a>
       </div>
     </div>
   </div>
@@ -192,6 +226,36 @@
         </div>
       <?php endif; ?>
     </form>
+  </div>
+
+  <div class="search-info">
+    <a class="item" href="<?=$this->url('participate-home')?>">
+      <div class="text-primary flex-row-spaced-between">
+        <h4 class="main-highlight">
+          Participe
+        </h4>
+        <i class="fa fa-comments" aria-hidden="true"></i>
+      </div>
+      <p>Faça parte da BDTD e contribua com a disseminação das teses e dissertações produzidas por pesquisadores brasileiros.</p>
+    </a>
+    <a class="item" href="<?=$this->url('technology-home')?>">
+      <div class="text-primary flex-row-spaced-between">
+        <h4 class="main-highlight">
+          Tecnologia
+        </h4>
+        <i class="fa fa-laptop" aria-hidden="true"></i>
+      </div>
+      <p>Em concordância com os preceitos da Ciência Aberta, toda a tecnologia utilizada para o funcionamento da BDTD são de código livre.</p>
+    </a>
+    <a class="item" href="<?=$this->url('indicators-home')?>">
+      <div class="text-primary flex-row-spaced-between">
+        <h4 class="main-highlight">
+          Indicadores
+        </h4>
+        <i class="fa fa-line-chart" aria-hidden="true"></i>
+      </div>
+      <p>Acesse alguns indicadores quantitativos relativos às teses e dissertações no Brasil.</p>
+    </a>
   </div>
 </div>
 <div class="container">
