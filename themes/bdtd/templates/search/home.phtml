@@ -1,6 +1,6 @@
 <?php
-  // BDTD: página inicial do legado (faixa com título e busca, texto institucional e parceiros).
-  // Contadores e atalhos entram com as páginas e scripts de que dependem.
+  // BDTD: página inicial do legado (faixa com título, contadores e busca, texto institucional
+  // e parceiros). Os atalhos entram na etapa seguinte.
   $this->headTitle($this->translate('BDTD'));
 
   // A busca fica dentro da faixa desta página, não no topo
@@ -14,12 +14,46 @@
   }
 
   $this->breadcrumbs()->disable();
+  $this->assetManager()->appendScriptLink('indicators-home.js');
 ?>
 <div class="search-box">
   <div class="container">
     <div class="box-title">
       <h1 class="bdtd-title">Biblioteca Digital Brasileira de <br> Teses e Dissertações</h1>
       <h4 class="bdtd-subtitle">Acesso e visibilidade às teses e dissertações brasileiras</h4>
+    </div>
+
+    <?php /* Contadores preenchidos pelo indicators-home.js (API de busca) */ ?>
+    <?php $resultsUrl = $this->url('search-results'); ?>
+    <div class="indicators text-primary">
+      <div class="item">
+        <i class="uil uil-university"></i>
+        <a href="<?=$this->url('datasources-home')?>" class="data">
+          <span id="institution" class="main-highlight">000</span>
+          <span>Instituições</span>
+        </a>
+      </div>
+      <div class="item">
+        <i class="uil uil-clipboard-alt"></i>
+        <a href="<?=$this->escapeHtmlAttr($resultsUrl . '?limit=0&lookfor=%2A%3A%2A&type=AllFields&filter%5B%5D=format%3A%22masterThesis%22')?>" class="data">
+          <span id="masterThesis" class="main-highlight">000</span>
+          <span>Dissertações</span>
+        </a>
+      </div>
+      <div class="item">
+        <i class="uil uil-book-open"></i>
+        <a href="<?=$this->escapeHtmlAttr($resultsUrl . '?limit=0&lookfor=%2A%3A%2A&type=AllFields&filter%5B%5D=format%3A%22doctoralThesis%22')?>" class="data">
+          <span id="doctorThesis" class="main-highlight">000</span>
+          <span>Teses</span>
+        </a>
+      </div>
+      <div class="item">
+        <i class="uil uil-file-info-alt"></i>
+        <a href="<?=$this->escapeHtmlAttr($resultsUrl)?>" class="data">
+          <span id="total" class="main-highlight">000</span>
+          <span>Documentos</span>
+        </a>
+      </div>
     </div>
 
     <?php $this->slot('search-home-hero')->start() ?>
