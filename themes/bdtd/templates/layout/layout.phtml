@@ -198,7 +198,8 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="<?=$this->transEscAttr('Close')?>">
-            <?=$this->icon('lightbox-close')?>
+            <?php /* BDTD: "X" desenhado em SVG, como no legado */ ?>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
           <div class="modal-body"></div>
         </div>

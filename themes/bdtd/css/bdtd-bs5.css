@@ -366,6 +366,43 @@ footer {
 }
 
 /*
+ * Janela (lightbox) do VuFind 7: 600px de largura (o VuFind 11 ajusta ao conteúdo, entre
+ * 600 e 1200px), moldura com sombra e botão de fechar com o "X" em SVG do legado
+ */
+#modal .modal-content {
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+#modal .modal-content > .close {
+  top: 0;
+  line-height: 1;
+}
+#modal .close svg {
+  width: 1em;
+  vertical-align: bottom;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+@media (min-width: 768px) {
+  #modal .modal-dialog {
+    width: 600px;
+    min-width: 0;
+    max-width: none;
+    margin: 30px auto;
+  }
+  #modal .modal-content {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  #modal .modal-content > .close {
+    right: -60px;
+  }
+}
+
+/*
  * Dúvidas frequentes: o .card do legado é só uma caixa com borda (no Bootstrap 5 vira
  * componente flex com fundo); ícone de abrir/fechar do tamanho do FontAwesome 4.
  */

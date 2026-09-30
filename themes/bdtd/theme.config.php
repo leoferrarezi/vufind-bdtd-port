@@ -20,6 +20,9 @@ return [
         ['file' => 'custom.css'],
         ['file' => 'bdtd-bs5.css'],
     ],
+    'js' => [
+        ['file' => 'bdtd-modal.js'],
+    ],
     'favicon' => 'icons/favicon.ico',
     // Ícones do tema sobre o FontAwesome 7 que já vem no bootstrap5. Uso: $this->icon('bdtd-advanced').
     // Os Unicons do legado (vendor/unicons, carregados acima) são usados direto nos templates,
