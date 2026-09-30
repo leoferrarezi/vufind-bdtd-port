@@ -47,10 +47,46 @@ textarea {
   }
 }
 
-/* Títulos com a altura de linha do Bootstrap 3 */
+/* Títulos com a altura de linha, os tamanhos e as margens do Bootstrap 3 (h2 e h3 já
+   são iguais no VuFind 11) */
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   line-height: 1.1;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+h1, .h1 {
+  font-size: 36px;
+}
+h4, .h4 {
+  font-size: 18px;
+}
+h5, .h5 {
+  font-size: 14px;
+}
+h6, .h6 {
+  font-size: 12px;
+}
+
+/* Listas com o recuo do navegador (40px) e a margem do Bootstrap 3 */
+ol,
+ul {
+  padding-left: 40px;
+  margin-bottom: 10px;
+}
+
+/* Trilha de navegação do Bootstrap 3: bloco com itens em linha (mantém a altura mesmo vazia) */
+.breadcrumb {
+  display: block;
+}
+.breadcrumb > li {
+  display: inline-block;
 }
 
 /*
@@ -68,6 +104,12 @@ h1, h2, h3, h4, h5, h6,
 .container::after,
 .container-fluid::after {
   clear: both;
+}
+/* O VuFind 11 troca o ::after do conteúdo principal por um bloco vazio, que deixa a margem
+   do último parágrafo vazar para fora do container */
+.main .container::after {
+  display: table;
+  content: " ";
 }
 
 /* Barra de navegação do Bootstrap 3: sem espaçamento interno, borda de 1px, altura mínima 50px */
