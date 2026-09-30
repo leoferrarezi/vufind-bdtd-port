@@ -25,6 +25,13 @@ return [
                     'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'participate'],
                 ],
             ],
+            'diretrizes-home' => [
+                'type' => \Laminas\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/Diretrizes/Home',
+                    'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'diretrizes'],
+                ],
+            ],
         ],
     ],
     'vufind' => [
