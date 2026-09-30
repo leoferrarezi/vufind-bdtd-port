@@ -241,7 +241,7 @@
           echo '<input type="hidden" name="sort" value="' . $this->escapeHtmlAttr($lastSort) . '">';
         }
       ?>
-    </div>
+    <?php /* BDTD: filtros ativos dentro de .search-form, como no legado */ ?>
     <?=$this->context($this)->renderInContext(
           'search/filters.phtml',
           [
@@ -254,5 +254,6 @@
             'fromSearchMemory' => $fromSearchMemory,
           ]
       );?>
+    </div>
   </form>
 <?php endif; ?>

@@ -136,7 +136,8 @@ footer {
 
 /* Caixa de busca: no VuFind 11 o campo fica dentro de .searchForm-query (com o botão de limpar) */
 .search-form .searchForm-query {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
+  width: 100%;
   position: relative;
   min-width: 0;
 }
@@ -149,6 +150,42 @@ footer {
 }
 #searchForm.searchForm {
   margin: 0;
+}
+/*
+ * Filtros ativos (dentro de .search-form, à direita dos botões) com as medidas do
+ * VuFind 7: o bootstrap5 muda margens e alinhamento, faz da etiqueta inteira o link de
+ * remover (vermelha e riscada ao passar o mouse) e usa o ícone fa-times.
+ */
+.active-filters {
+  gap: 0;
+  align-items: baseline;
+  margin-block-start: 0;
+}
+.active-filters .filters {
+  margin-block-start: 0;
+}
+.active-filters .filters .title-value-pair {
+  margin-inline-end: 0;
+}
+.active-filters .filters .filter-value {
+  margin: 5px;
+}
+.active-filters .filters a.filter-value:hover,
+.active-filters .filters a.filter-value:focus {
+  text-decoration: none;
+  background-color: #265680;
+}
+/* Ícone de remover do legado (window-close, \f2d3, 15px), vermelho ao passar o mouse */
+.active-filters .filter-value .icon {
+  width: 15px;
+  margin: 0 1px 0 4px;
+  vertical-align: baseline;
+}
+.active-filters .filter-value .icon::before {
+  content: "\f2d3";
+}
+.active-filters .filter-value:hover .icon {
+  color: red;
 }
 /* Sem o botão de limpar a busca do VuFind 11 (o legado não tinha) */
 .search-form .searchForm-reset {
