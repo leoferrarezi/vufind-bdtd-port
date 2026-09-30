@@ -24,6 +24,15 @@ return [
         ['file' => 'bdtd-modal.js'],
     ],
     'favicon' => 'icons/favicon.ico',
+    // Matomo com os campos da LA Referencia (identificador OAI, país, repositório)
+    'helpers' => [
+        'factories' => [
+            'Bdtd\View\Helper\Root\Matomo' => 'VuFind\View\Helper\Root\MatomoFactory',
+        ],
+        'aliases' => [
+            'matomo' => 'Bdtd\View\Helper\Root\Matomo',
+        ],
+    ],
     // Ícones do tema sobre o FontAwesome 7 que já vem no bootstrap5. Uso: $this->icon('bdtd-advanced').
     // Os Unicons do legado (vendor/unicons, carregados acima) são usados direto nos templates,
     // com o markup do legado (<i class="uil uil-...">), para manter as medidas.
