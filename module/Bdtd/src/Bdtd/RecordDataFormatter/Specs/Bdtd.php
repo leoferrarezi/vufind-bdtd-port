@@ -74,7 +74,7 @@ class Bdtd extends \VuFind\RecordDataFormatter\Specs\DefaultRecord
         $this->setPeopleLine($spec, 'Referees', 'getContributors', 'referee', 'contributor', $lattes, fn () => 'Referee');
         $spec->setLine('Format', 'getFormats', 'RecordHelper', ['helperMethod' => 'getFormatList']);
         $spec->setLine('Access type', 'getAccessLevel', null, ['translate' => true]);
-        $spec->setLine('dARK ID', 'getDarkID');
+        $spec->setTemplateLine('dARK ID', 'getDarkID', 'data-darkId.phtml');
         // Código do idioma sem tradução ("por"), como no legado
         $spec->setLine('Language', 'getLanguages');
         $spec->setLine('Institution', 'getRootPublishers');
