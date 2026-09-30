@@ -18,6 +18,13 @@ return [
                     'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'about'],
                 ],
             ],
+            'participate-home' => [
+                'type' => \Laminas\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/Participate/Home',
+                    'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'participate'],
+                ],
+            ],
         ],
     ],
     'vufind' => [
