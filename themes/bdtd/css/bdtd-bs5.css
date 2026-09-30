@@ -233,6 +233,27 @@ footer {
 .result .format {
   margin-bottom: 0;
 }
+/*
+ * Registro: ícones da barra de ferramentas no tamanho e na posição dos do FontAwesome 4
+ * (a altura de linha mantém os botões com os 38,5px do legado)
+ */
+[class*="btn-type-"]::before {
+  font-size: 0.857143em;
+  text-align: center;
+}
+.btn-type-cite::before,
+.btn-type-print::before {
+  width: 1.083333em;
+  line-height: 23px;
+  vertical-align: 0.5px;
+}
+.btn-type-export::before {
+  position: relative;
+  top: -0.6px;
+  width: 1.166667em;
+  line-height: 22.5px;
+  vertical-align: 1px;
+}
 /* Paginação: setas "Anterior"/"Seguinte" do tamanho do fa-angle-* do FontAwesome 4 */
 .pagination .icon--font {
   width: 0.481em;

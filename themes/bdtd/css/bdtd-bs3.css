@@ -362,3 +362,45 @@ select.form-control {
 .citation th {
   text-align: right;
 }
+
+/* Barra de ferramentas do registro do VuFind 7: botões cinza sem borda, com o ícone antes do texto */
+.action-toolbar {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.action-toolbar li {
+  display: inline-block;
+}
+.toolbar-btn {
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 0.5rem 1rem;
+  font-size: inherit;
+  font-weight: inherit;
+  color: #555;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 0;
+  border-radius: 4px;
+}
+.toolbar-btn:hover {
+  color: #555;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+[class*="btn-type-"]::before {
+  display: inline-block;
+  margin-right: 0.25rem;
+  font-family: FontAwesome;
+  color: inherit;
+}
+.btn-type-cite::before {
+  content: "\f069";
+}
+.btn-type-print::before {
+  content: "\f02f";
+}
+.btn-type-export::before {
+  content: "\f08e";
+}
