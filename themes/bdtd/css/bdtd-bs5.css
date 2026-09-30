@@ -187,6 +187,10 @@ footer {
 .active-filters .filter-value:hover .icon {
   color: red;
 }
+/* "Busca avançada" sem sublinhado, como os botões do legado (o VuFind 11 sublinha o link) */
+.searchForm .advanced-search-link {
+  text-decoration: none;
+}
 /* Sem o botão de limpar a busca do VuFind 11 (o legado não tinha) */
 .search-form .searchForm-reset {
   display: none !important;
