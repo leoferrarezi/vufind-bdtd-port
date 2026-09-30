@@ -402,6 +402,11 @@ footer {
   }
 }
 
+/* Botão do Google Tradutor: ícone na linha de base, como no Bootstrap 3 (o 5 alinha svg ao meio) */
+.translateBtn svg {
+  vertical-align: baseline;
+}
+
 /*
  * Lista completa de uma faceta (janela "Ver todos ..."), como no legado: sem o filtro do
  * VuFind 11, ordenação numa linha de 40px com o botão ativo verde, lista com 15px acima e

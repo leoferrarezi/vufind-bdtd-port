@@ -30,6 +30,23 @@
         position: 'footer'
     );
   }
+
+  // BDTD: serviços de terceiros da produção (config.ini [BdtdTheme]): botão do Google
+  // Tradutor, widget de acessibilidade UserWay e verificação do Google Search Console
+  $bdtdTheme = $this->config()->get('config')->BdtdTheme ?? null;
+  $googleTranslate = (bool)($bdtdTheme->google_translate ?? false);
+  $userwayAccount = (string)($bdtdTheme->userway_account ?? '');
+  $googleSiteVerification = (string)($bdtdTheme->google_site_verification ?? '');
+  if ($googleSiteVerification !== '') {
+    $this->headMeta()->appendName('google-site-verification', $googleSiteVerification);
+  }
+  if ($userwayAccount !== '') {
+    $this->assetManager()->appendScriptLink(
+        src: 'https://cdn.userway.org/widget.js',
+        attrs: ['data-account' => $userwayAccount],
+        position: 'footer'
+    );
+  }
 ?>
 <html lang="<?=$this->layout()->userLang?>"<?php if ($this->layout()->rtl): ?> dir="rtl"<?php endif; ?>>
   <head>
@@ -207,6 +224,9 @@
     </div>
     <div class="vufind-offcanvas-overlay" data-toggle="vufind-offcanvas"></div>
     <?=$this->render('Helpers/analytics.phtml')?>
+    <?php if ($googleTranslate): ?>
+      <?=$this->render('layout/google-translate.phtml')?>
+    <?php endif; ?>
     <?php foreach ($this->captcha()->js() as $jsInclude):?>
       <?=$this->assetManager()->outputInlineScriptLink($jsInclude)?>
     <?php endforeach; ?>
