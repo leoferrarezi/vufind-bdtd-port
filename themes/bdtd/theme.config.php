@@ -13,6 +13,7 @@ return [
     'extends' => 'bootstrap5',
     // Sem 'priority': saem depois do CSS do tema pai, na ordem abaixo.
     'css' => [
+        ['file' => 'vendor/unicons/css/line.css'],
         ['file' => 'bdtd-fonts.css'],
         ['file' => 'bdtd-bs3.css'],
         ['file' => 'style.css'],
@@ -20,11 +21,11 @@ return [
         ['file' => 'bdtd-bs5.css'],
     ],
     'favicon' => 'icons/favicon.ico',
-    // Ícones do tema (no legado, Unicons e glyphicons via CDN); o FontAwesome 7 já
-    // vem no bootstrap5. Uso: $this->icon('bdtd-home').
+    // Ícones do tema sobre o FontAwesome 7 que já vem no bootstrap5. Uso: $this->icon('bdtd-advanced').
+    // Os Unicons do legado (vendor/unicons, carregados acima) são usados direto nos templates,
+    // com o markup do legado (<i class="uil uil-...">), para manter as medidas.
     'icons' => [
         'aliases' => [
-            'bdtd-home' => 'FontAwesome:house',
             'bdtd-advanced' => 'FontAwesome:circle-plus',
         ],
     ],

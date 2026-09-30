@@ -114,6 +114,11 @@ ul {
   content: " ";
 }
 
+/* Links do menu com a altura de linha do Bootstrap 3 (os ícones herdam os 20px) */
+.navbar-nav > li > a {
+  line-height: 20px;
+}
+
 /* Barra de navegação do Bootstrap 3: sem espaçamento interno, borda de 1px, altura mínima 50px */
 .navbar {
   --bs-navbar-padding-x: 0;

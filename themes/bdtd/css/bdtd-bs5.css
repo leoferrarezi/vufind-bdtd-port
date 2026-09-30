@@ -57,12 +57,6 @@ footer {
   line-height: 1.166667;
 }
 
-/* Ícone de início do menu com a largura do uil-home do legado (1,4rem) */
-.nav-main .icon--font.fa-house {
-  width: 1.4rem;
-  max-width: none;
-}
-
 /*
  * Busca avançada: o advanced_search.js do VuFind 11 usa classes (adv-group,
  * adv-group-match, adv-term-type, #groupPlaceHolder, clear-btn) que o bootstrap5
