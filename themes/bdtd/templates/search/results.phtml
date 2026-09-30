@@ -124,7 +124,7 @@
     <?=$this->render('search/results-list.phtml')?>
     <?=$this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['isBottom' => true, 'formAttr' => 'search-cart-form'])?>
     <?=$this->paginationControl($this->results->getPaginator(), 'Sliding', 'Helpers/pagination.phtml', ['params' => ['results' => $this->results], 'options' => $this->paginationOptions ?? []])?>
-    <?=$this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results])?>
+    <?php /* BDTD: sem as ferramentas de busca (search/controls/results-tools.phtml), como no legado */ ?>
   <?php endif; ?>
 </div>
 <?php /* End Main Listing */ ?>

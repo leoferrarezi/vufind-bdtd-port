@@ -313,3 +313,17 @@ select.form-control {
   border-color: #66afe9;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
+
+/* Paginação do Bootstrap 3: 6px 12px, borda #ddd, cantos de 4px, hover cinza */
+.pagination {
+  --bs-pagination-padding-x: 12px;
+  --bs-pagination-padding-y: 6px;
+  --bs-pagination-border-color: #ddd;
+  --bs-pagination-border-radius: 4px;
+  --bs-pagination-hover-color: #092b47;
+  --bs-pagination-hover-bg: #eee;
+  --bs-pagination-hover-border-color: #ddd;
+}
+.page-link {
+  line-height: 1.42857143;
+}

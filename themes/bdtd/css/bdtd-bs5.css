@@ -233,6 +233,22 @@ footer {
 .result .format {
   margin-bottom: 0;
 }
+/* Paginação: setas "Anterior"/"Seguinte" do tamanho do fa-angle-* do FontAwesome 4 */
+.pagination .icon--font {
+  width: 0.481em;
+  font-size: 0.742em;
+  line-height: 1;
+  vertical-align: baseline;
+  text-align: left;
+  position: relative;
+  top: -0.5px;
+}
+.pagination .page-prev .icon--font {
+  left: 0.4px;
+}
+.pagination .page-next .icon--font {
+  left: -0.6px;
+}
 
 /*
  * Busca avançada: o advanced_search.js do VuFind 11 usa classes (adv-group,
