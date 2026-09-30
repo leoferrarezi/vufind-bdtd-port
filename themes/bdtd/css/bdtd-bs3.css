@@ -83,9 +83,41 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
-/* Botões com a altura de linha do Bootstrap 3 */
+/* Botões com a altura de linha do Bootstrap 3, sem quebra de linha */
 .btn {
   --bs-btn-line-height: 1.42857143;
+  white-space: nowrap;
+}
+/* .btn-default do Bootstrap 3: branco com borda cinza */
+.btn-default {
+  --bs-btn-color: #333;
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: #ccc;
+  --bs-btn-hover-color: #333;
+  --bs-btn-hover-bg: #e6e6e6;
+  --bs-btn-hover-border-color: #adadad;
+  --bs-btn-active-color: #333;
+  --bs-btn-active-bg: #e6e6e6;
+  --bs-btn-active-border-color: #adadad;
+}
+
+/* Rótulos do Bootstrap 3: negrito, com 5px abaixo */
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+/* Rádios e caixas de seleção com o tamanho e a margem do Bootstrap 3 */
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 4px 0 0;
+}
+form input[type="radio"],
+form input[type="checkbox"] {
+  width: 13px;
+  height: 15px;
 }
 
 /* Campos de formulário com a aparência do .form-control do Bootstrap 3 */
@@ -104,8 +136,17 @@ h1, h2, h3, h4, h5, h6,
   line-height: normal;
 }
 form .form-select:not([multiple]),
-form input.form-control {
+form input.form-control,
+select.form-control:not([multiple]):not([size]) {
   height: 34px;
+}
+.form-select[multiple],
+.form-select[size]:not([size="1"]) {
+  padding-right: 12px;
+}
+/* No Bootstrap 3 o select com .form-control mantém a seta nativa */
+select.form-control {
+  appearance: auto;
 }
 .form-control:focus,
 .form-select:focus {
