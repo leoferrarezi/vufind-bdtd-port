@@ -238,6 +238,24 @@ footer {
   display: inline;
 }
 /*
+ * Registros relacionados: ícone de documento do legado (fa-file-text-o do FontAwesome 4,
+ * 0,857em de largura) com o desenho vazado do FontAwesome 7 (file-lines, regular)
+ */
+.related__format-icon {
+  display: inline-block;
+  width: 0.8575em;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+}
+.related__format-icon::before {
+  position: relative;
+  top: 0.3px;
+  font-family: "Font Awesome 7 Free";
+  font-weight: 400;
+  content: "\f15c";
+}
+/*
  * Registro: ícones da barra de ferramentas no tamanho e na posição dos do FontAwesome 4
  * (a altura de linha mantém os botões com os 38,5px do legado)
  */
