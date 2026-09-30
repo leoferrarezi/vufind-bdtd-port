@@ -47,6 +47,13 @@ footer {
 #searchForm.searchForm {
   margin: 0;
 }
+/* Sem o botão de limpar a busca do VuFind 11 (o legado não tinha) */
+.search-form .searchForm-reset {
+  display: none !important;
+}
+.search-form #searchForm_lookfor {
+  padding-right: 8px;
+}
 /*
  * Ícone bdtd-advanced (circle-plus) do tamanho do fa-plus-circle do FontAwesome 4
  * (círculo de 0,857em); o do FontAwesome 7 ocupa 1,25em de largura.

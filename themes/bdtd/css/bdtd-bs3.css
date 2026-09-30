@@ -119,12 +119,18 @@ ul {
   line-height: 20px;
 }
 
-/* Barra de navegação do Bootstrap 3: sem espaçamento interno, borda de 1px, altura mínima 50px */
+/* Barra de navegação do Bootstrap 3: bloco sem espaçamento interno, borda de 1px, altura mínima
+   50px e 20px abaixo (o .container.navbar mantém o espaçamento lateral do container) */
 .navbar {
   --bs-navbar-padding-x: 0;
   --bs-navbar-padding-y: 0;
+  display: block;
   min-height: 50px;
+  margin-bottom: 20px;
   border: 1px solid transparent;
+}
+.container.navbar {
+  --bs-navbar-padding-x: 15px;
 }
 @media (min-width: 768px) {
   .navbar {
