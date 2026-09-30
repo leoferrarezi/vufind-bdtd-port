@@ -54,7 +54,8 @@
 
 <h1 class="visually-hidden"><?=$this->escapeHtml($headTitle)?></h1>
 
-<div class="<?=$this->layoutClass('mainbody', (bool)$recommendations)?>">
+<?php /* BDTD: cabeçalho em largura total, acima da lateral e dos resultados, como no legado */ ?>
+<div class="result-header">
   <?php if (($recordTotal = $this->results->getResultTotal()) > 0): // only display these at very top if we have results ?>
     <?php foreach ($this->results->getRecommendations('top') as $index => $current): ?>
       <?=$this->recommend($current, 'top', $index)?>
@@ -85,6 +86,9 @@
     <?php endif; ?>
   </div>
   <?php /* End Listing Options */ ?>
+</div>
+
+<div class="<?=$this->layoutClass('mainbody', (bool)$recommendations)?>">
 
   <?php if ($options->showRestrictedViewWarning() && $this->results->isRestrictedView()): ?>
     <?=$this->render('error/restrictedViewWarning.phtml')?>

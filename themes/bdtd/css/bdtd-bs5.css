@@ -64,6 +64,19 @@ footer {
   line-height: 1.166667;
 }
 
+/* Resultados: ordenação com as medidas do legado (rótulo de 34px com 0,5rem à direita, sem
+   espaço entre os itens nem margem abaixo) */
+.search-sort {
+  gap: 0;
+}
+.search-controls .search-sort:not(:last-child) {
+  margin-bottom: 0;
+}
+.search-sort label {
+  line-height: 34px;
+  padding-right: 0.5rem;
+}
+
 /*
  * Busca avançada: o advanced_search.js do VuFind 11 usa classes (adv-group,
  * adv-group-match, adv-term-type, #groupPlaceHolder, clear-btn) que o bootstrap5
