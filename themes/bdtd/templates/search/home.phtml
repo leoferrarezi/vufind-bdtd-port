@@ -1,6 +1,6 @@
 <?php
-  // BDTD: página inicial do legado (faixa com título, contadores e busca, texto institucional
-  // e parceiros). Os atalhos entram na etapa seguinte.
+  // BDTD: página inicial do legado (faixa com título, contadores e busca, atalhos, texto
+  // institucional e parceiros).
   $this->headTitle($this->translate('BDTD'));
 
   // A busca fica dentro da faixa desta página, não no topo
@@ -59,6 +59,37 @@
     <?php $this->slot('search-home-hero')->start() ?>
       <?=$this->context($this)->renderInContext('search/searchbox.phtml', ['focusOnLoad' => true, 'ignoreHiddenFilterMemory' => true])?>
     <?=$this->slot('search-home-hero')->end() ?>
+  </div>
+</div>
+<div class="container">
+  <div class="search-info bottom-search-form">
+    <a class="item" href="<?=$this->url('participate-home')?>">
+      <div class="text-primary flex-row-spaced-between">
+        <h4 class="main-highlight">
+          Participe
+        </h4>
+        <i class="uil uil-feedback"></i>
+      </div>
+      <p>Faça parte da BDTD e contribua com a disseminação das teses e dissertações produzidas por pesquisadores brasileiros.</p>
+    </a>
+    <a class="item" href="<?=$this->url('technology-home')?>">
+      <div class="text-primary flex-row-spaced-between">
+        <h4 class="main-highlight">
+          Tecnologia
+        </h4>
+        <i class="uil uil-globe"></i>
+      </div>
+      <p>Em concordância com os preceitos da Ciência Aberta, toda a tecnologia utilizada para o funcionamento da BDTD são de código livre.</p>
+    </a>
+    <a class="item" href="<?=$this->url('indicators-home')?>">
+      <div class="text-primary flex-row-spaced-between">
+        <h4 class="main-highlight">
+          Indicadores
+        </h4>
+        <i class="uil uil-chart-line"></i>
+      </div>
+      <p> Acesse alguns indicadores quantitativos relativos às teses e dissertações no Brasil.</p>
+    </a>
   </div>
 </div>
 
