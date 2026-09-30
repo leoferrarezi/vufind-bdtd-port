@@ -26,6 +26,8 @@ textarea {
 .row {
   --bs-gutter-x: 30px;
 }
+/* Largura fixa, não máxima (um .container dentro de outro passa da largura do pai, como no
+   Bootstrap 3) */
 @media (min-width: 576px) {
   .container {
     max-width: none;
@@ -33,17 +35,17 @@ textarea {
 }
 @media (min-width: 768px) {
   .container {
-    max-width: 750px;
+    width: 750px;
   }
 }
 @media (min-width: 992px) {
   .container {
-    max-width: 970px;
+    width: 970px;
   }
 }
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+    width: 1170px;
   }
 }
 
@@ -123,6 +125,74 @@ ul {
   .navbar {
     border-radius: 4px;
   }
+}
+
+/* Painéis do Bootstrap 3 */
+.panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.panel-body {
+  padding: 15px;
+}
+.panel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel-default {
+  border-color: #ddd;
+}
+.panel-default > .panel-heading {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+
+/* Abas do Bootstrap 3 (li.active > a, sem .nav-link) */
+.nav-tabs {
+  display: block;
+  border-bottom: 1px solid #ddd;
+}
+.nav-tabs::before,
+.nav-tabs::after {
+  display: table;
+  content: " ";
+}
+.nav-tabs::after {
+  clear: both;
+}
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+.nav-tabs > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+}
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  text-decoration: none;
+  background-color: #eee;
+  border-color: #eee #eee #ddd;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #555;
+  cursor: default;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
 }
 
 /* Menus suspensos do Bootstrap 3 (itens li > a, sem .dropdown-item; sem a seta do toggle) */
