@@ -48,13 +48,85 @@ footer {
   margin: 0;
 }
 /*
- * Ícone do link "Busca avançada" do tamanho do fa-plus-circle do FontAwesome 4
+ * Ícone bdtd-advanced (circle-plus) do tamanho do fa-plus-circle do FontAwesome 4
  * (círculo de 0,857em); o do FontAwesome 7 ocupa 1,25em de largura.
  */
-.search-form .advanced-search-link .icon {
+.icon--font.fa-circle-plus {
   width: auto;
   font-size: 0.857143em;
   line-height: 1.166667;
+}
+
+/*
+ * Busca avançada: o advanced_search.js do VuFind 11 usa classes (adv-group,
+ * adv-group-match, adv-term-type, #groupPlaceHolder, clear-btn) que o bootstrap5
+ * estiliza; o visual vem do CSS legado, então os estilos do bootstrap5 saem aqui.
+ */
+/* Ícones na linha de base do texto, como os <i class="fa"> do legado (no bootstrap5 ficam no topo) */
+.adv-search-form .icon--font {
+  vertical-align: baseline;
+}
+.adv-search-form .adv-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+.adv-search-form .adv-group-match {
+  float: none;
+  width: auto;
+}
+.adv-search-form .add_search_link {
+  margin-top: 0;
+}
+.adv-search .adv-term-remove {
+  font-size: 1.4em;
+}
+.adv-search .adv-term-remove .icon {
+  width: auto;
+  line-height: 1;
+}
+#groupPlaceHolder,
+#groupPlaceHolder:hover,
+#groupPlaceHolder:focus,
+#groupPlaceHolder:active {
+  display: block;
+  width: auto;
+  background: none;
+  border: 0;
+  border-top: 1px solid #e6e6e6;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: left;
+  cursor: auto;
+}
+.adv-search-form .adv-submit {
+  margin: 0;
+}
+.form-disabled .btn[disabled] {
+  border-color: transparent;
+}
+/* Barra de anos com as medidas do bootstrap-slider do legado */
+.adv-search-form .slider-container {
+  padding: 12px 10px 9px;
+}
+.slider-container .noUi-horizontal .noUi-connects {
+  border-radius: 4px;
+}
+.slider-container .noUi-horizontal .noUi-connect {
+  background: #e1e1e1;
+  box-shadow: none;
+}
+.slider-container .noUi-horizontal .noUi-handle,
+.slider-container .noUi-horizontal .noUi-handle:hover,
+.slider-container .noUi-horizontal .noUi-handle.noUi-active {
+  top: -5px;
+  background: #0e8d68;
+  border-color: #0e8d68;
+  border-radius: 50%;
 }
 
 /*
