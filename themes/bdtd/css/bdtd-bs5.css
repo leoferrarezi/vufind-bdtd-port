@@ -130,6 +130,19 @@ footer {
 }
 
 /*
+ * Dúvidas frequentes: o .card do legado é só uma caixa com borda (no Bootstrap 5 vira
+ * componente flex com fundo); ícone de abrir/fechar do tamanho do FontAwesome 4.
+ */
+.faq .card {
+  display: block;
+  background-color: transparent;
+}
+.btn-collapse::before {
+  font-size: calc(1.5rem * 0.857143);
+  line-height: calc(1.5rem * 1.1);
+}
+
+/*
  * Barra do Governo Federal: aparência provisória até o barra_2.0.js carregar e
  * preencher a barra (no legado eram estilos inline que o próprio script removia).
  */

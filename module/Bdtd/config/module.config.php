@@ -39,6 +39,13 @@ return [
                     'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'technology'],
                 ],
             ],
+            'faq-home' => [
+                'type' => \Laminas\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/faq/home',
+                    'defaults' => ['controller' => 'Content', 'action' => 'Content', 'page' => 'faq'],
+                ],
+            ],
         ],
     ],
     'vufind' => [
