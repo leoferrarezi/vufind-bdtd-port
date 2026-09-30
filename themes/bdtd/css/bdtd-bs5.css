@@ -403,6 +403,35 @@ footer {
 }
 
 /*
+ * Lista completa de uma faceta (janela "Ver todos ..."), como no legado: sem o filtro do
+ * VuFind 11, ordenação numa linha de 40px com o botão ativo verde, lista com 15px acima e
+ * abaixo e a área rolável sem bordas
+ */
+.full-facet-controls .full-facet-sort-options {
+  display: block;
+  padding: 0;
+}
+.full-facet-controls .full-facet-sort-options label {
+  margin-bottom: 5px;
+}
+.full-facet-sort-options .js-facet-sort.active {
+  color: var(--color-neutral-50);
+  background-color: var(--color-hex-primary-base);
+  border-color: var(--color-hex-primary-base);
+}
+.full-facet-controls .facet-lightbox-filter {
+  display: none;
+}
+#modal .lightbox-scroll.full-facets {
+  margin-top: 0;
+  border-top: 0;
+  border-bottom: 0;
+}
+#modal .full-facet-list {
+  margin: 15px 0;
+}
+
+/*
  * Dúvidas frequentes: o .card do legado é só uma caixa com borda (no Bootstrap 5 vira
  * componente flex com fundo); ícone de abrir/fechar do tamanho do FontAwesome 4.
  */
