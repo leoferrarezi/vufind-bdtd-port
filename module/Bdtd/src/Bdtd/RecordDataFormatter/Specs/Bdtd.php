@@ -75,7 +75,8 @@ class Bdtd extends \VuFind\RecordDataFormatter\Specs\DefaultRecord
         $spec->setLine('Format', 'getFormats', 'RecordHelper', ['helperMethod' => 'getFormatList']);
         $spec->setLine('Access type', 'getAccessLevel', null, ['translate' => true]);
         $spec->setLine('dARK ID', 'getDarkID');
-        $spec->setLine('Language', 'getLanguages', null, $this->getLanguageLineSettings());
+        // Código do idioma sem tradução ("por"), como no legado
+        $spec->setLine('Language', 'getLanguages');
         $spec->setLine('Institution', 'getRootPublishers');
         $spec->setLine('Program', 'getProgramPublishers');
         $spec->setLine('Department', 'getDepartmentPublishers');
@@ -102,6 +103,8 @@ class Bdtd extends \VuFind\RecordDataFormatter\Specs\DefaultRecord
         );
         $spec->setTemplateLine('Access link', true, 'data-onlineAccess.phtml');
         $spec->setTemplateLine('Related Items', 'getAllRecordLinks', 'data-allRecordLinks.phtml');
+        // Resumo como última linha da tabela (o legado o tirou de baixo do título)
+        $spec->setLine('Summary', 'getSummary');
         return $spec->getArray();
     }
 

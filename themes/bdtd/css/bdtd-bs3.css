@@ -358,6 +358,10 @@ select.form-control {
   border-top: 1px solid #ddd;
   border-bottom-width: 0;
 }
+/* Legenda oculta fora do fluxo, como o .sr-only do Bootstrap 3 (o 5 deixa a caption com 1px) */
+caption.visually-hidden {
+  position: absolute;
+}
 /* Tabela de metadados do registro (.citation) com os nomes dos campos à direita, como no VuFind 7 */
 .citation th {
   text-align: right;

@@ -233,6 +233,10 @@ footer {
 .result .format {
   margin-bottom: 0;
 }
+/* Registro: tipo de documento em linha (no VuFind 11 é inline-flex e as margens aumentam a linha) */
+.record .format {
+  display: inline;
+}
 /*
  * Registro: ícones da barra de ferramentas no tamanho e na posição dos do FontAwesome 4
  * (a altura de linha mantém os botões com os 38,5px do legado)
