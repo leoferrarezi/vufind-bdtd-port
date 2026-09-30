@@ -18,6 +18,23 @@
               <?=$this->icon('bdtd-home')?><span class="visually-hidden"><?=$this->transEsc('Home')?></span>
             </a>
           </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Institucional</a>
+            <ul class="dropdown-menu">
+              <li><a href="<?=$this->url('about-home')?>"><?=$this->transEsc('Sobre')?></a></li>
+              <li><a href="<?=$this->url('participate-home')?>"><?=$this->transEsc('Como participa')?></a></li>
+              <li><a href="<?=$this->url('diretrizes-home')?>"><?=$this->transEsc('Diretrizes')?></a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Rede</a>
+            <ul class="dropdown-menu network-menu">
+              <li><a href="<?=$this->url('technology-home')?>"><?=$this->transEsc('Tecnologia')?></a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=$this->url('faq-home')?>"><?=$this->transEsc('Dúvidas frequentes')?></a>
+          </li>
           <?php if ($this->feedback()->tabEnabled()): ?>
             <li class="nav-item">
               <a class="nav-link" id="feedbackLink" data-lightbox href="<?=$this->url('feedback-form', ['id' => 'FeedbackSite'])?>"><?=$this->transEsc('Contact')?></a>
