@@ -7,6 +7,7 @@
   $this->layout()->searchbox = false;
   $this->layout()->disableDefaultNotices = true;
   $this->layout()->layoutFull = true;
+  $this->layout()->skipToSearch = 'searchForm_lookfor';
 
   if (!isset($this->searchClassId)) {
     $config = $this->config()->get('config');
@@ -57,7 +58,7 @@
     </div>
 
     <?php $this->slot('search-home-hero')->start() ?>
-      <?=$this->context($this)->renderInContext('search/searchbox.phtml', ['focusOnLoad' => true, 'ignoreHiddenFilterMemory' => true])?>
+      <?=$this->context($this)->renderInContext('search/searchbox.phtml', ['ignoreHiddenFilterMemory' => true])?>
     <?=$this->slot('search-home-hero')->end() ?>
   </div>
 </div>

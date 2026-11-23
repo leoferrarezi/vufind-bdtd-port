@@ -55,6 +55,9 @@
       fn ($m) => strtolower($m[1]) . '-' . strtoupper($m[2]),
       (string)$this->layout()->userLang
   );
+
+  $skipToSearch = $this->layout()->skipToSearch
+    ?? ($this->layout()->searchbox !== false ? 'searchForm_lookfor' : null);
 ?>
 <html lang="<?=$this->escapeHtmlAttr($htmlLang)?>"<?php if ($this->layout()->rtl): ?> dir="rtl"<?php endif; ?>>
   <head>
@@ -182,6 +185,16 @@
     <?=$this->assetManager()->outputHeaderAssets()?>
   </head>
   <body class="template-dir-<?=$this->templateDir?> template-name-<?=$this->templateName?> <?=$this->layoutClass('offcanvas-row')?><?php if ($this->layout()->rtl): ?> rtl<?php endif; ?>">
+    <div class="skip-links">
+      <a class="visually-hidden-focusable skip-link" href="#content"><?=$this->transEsc('Skip to content') ?></a>
+      <?php if (!isset($this->layout()->renderingError)): ?>
+        <a class="visually-hidden-focusable skip-link skip-link-menu" href="#menu-principal"><?=$this->transEsc('skip_to_menu') ?></a>
+      <?php endif; ?>
+      <?php if ($skipToSearch): ?>
+        <a class="visually-hidden-focusable skip-link" href="#<?=$this->escapeHtmlAttr($skipToSearch)?>"><?=$this->transEsc('skip_to_search') ?></a>
+      <?php endif; ?>
+      <a class="visually-hidden-focusable skip-link" href="#rodape"><?=$this->transEsc('skip_to_footer') ?></a>
+    </div>
     <?=$this->cookieConsent()->render('bottom')?>
     <?php if ($govBar): /* BDTD: barra do Governo Federal, preenchida pelo barra_2.0.js */ ?>
       <div id="barra-brasil" class="hidden-print">
@@ -195,7 +208,6 @@
       <?php if (isset($this->layout()->srmessage)): // message for benefit of screen-reader users ?>
         <span class="visually-hidden" role="heading" aria-level="1"><?=$this->layout()->srmessage ?></span>
       <?php endif; ?>
-      <a class="visually-hidden-focusable" href="#content"><?=$this->transEsc('Skip to content') ?></a>
       <?=$this->render('header.phtml')?>
     </header>
     <?php if ($this->layout()->searchbox !== false): /* BDTD: busca numa faixa própria abaixo do topo */ ?>
@@ -210,7 +222,7 @@
     <?=$this->breadcrumbs()->render()?>
     <div role="main" class="main">
       <?php /* BDTD: páginas com faixas na largura total (página inicial) usam container-fluid */ ?>
-      <div id="content" class="<?=$this->layout()->layoutFull ? 'container-fluid' : 'container'?>">
+      <div id="content" tabindex="-1" class="<?=$this->layout()->layoutFull ? 'container-fluid' : 'container'?>">
         <?php if (!($this->layout()->disableDefaultNotices ?? false)): ?>
           <?=$this->notices()->renderNoticesForPosition('default')?>
         <?php endif; ?>

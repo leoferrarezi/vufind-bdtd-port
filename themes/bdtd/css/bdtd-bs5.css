@@ -508,3 +508,27 @@ footer {
   text-decoration: none;
   color: #fff;
 }
+
+.skip-link:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  padding: 8px 16px;
+  background-color: #1a5544;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: underline;
+  outline: 3px solid #1a5544;
+  outline-offset: 2px;
+}
+#content:focus,
+#menu-principal:focus,
+#rodape:focus {
+  outline: none;
+}
+@media (max-width: 991.98px) {
+  .skip-link-menu {
+    display: none;
+  }
+}
