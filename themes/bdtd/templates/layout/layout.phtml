@@ -71,10 +71,11 @@
       $siteConfig = $this->config()->get('config')->Site;
       // Disabled escaping of title temporarily so that we get it unescaped first:
       $this->headTitle()->setAutoEscape(false);
-      $fullTitle = $this->translate(
+      $pageTitle = preg_replace('/\s*\.$/u', '', $this->headTitle()->renderTitle());
+      $fullTitle = preg_match('/\bBDTD\b/u', $pageTitle) ? $pageTitle : $this->translate(
           'title_wrapper',
           [
-            '%%pageTitle%%' => $this->headTitle()->renderTitle(),
+            '%%pageTitle%%' => $pageTitle,
             '%%siteTitle%%' => $siteConfig->title,
             '%%titleSeparator%%' => $siteConfig->titleSeparator ?? '::',
           ]

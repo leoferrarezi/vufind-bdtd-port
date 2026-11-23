@@ -28,7 +28,7 @@
   $this->component('page-title', [
     'title' => $this->translate($this->facetLabel),
     'level' => 1,
-    'headTitle' => $this->translate('facet_list_for', ['%%field%%' => $this->facetLabel]),
+    'headTitle' => $this->translate('facet_list_for', ['%%field%%' => $this->translate($this->facetLabel)]),
   ])
 ?>
 <div class="js-full-facet-list" data-search-url="<?=$this->escapeHtmlAttr($searchAction)?>">
