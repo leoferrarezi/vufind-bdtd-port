@@ -1,0 +1,12 @@
+<?php if ($active): ?>
+  <?php $empty = trim(strip_tags($breadcrumbs)) === ''; ?>
+  <?php if ($empty): ?>
+    <div class="breadcrumbs" aria-hidden="true">
+  <?php else: ?>
+    <nav class="breadcrumbs" aria-label="<?=$this->transEscAttr('Breadcrumbs') ?>">
+  <?php endif; ?>
+    <div class="container">
+        <ul class="breadcrumb hidden-print"><?=$breadcrumbs?></ul>
+    </div>
+  <?=$empty ? '</div>' : '</nav>'?>
+<?php endif; ?>

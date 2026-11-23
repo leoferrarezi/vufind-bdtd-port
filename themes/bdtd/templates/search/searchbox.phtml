@@ -91,7 +91,7 @@
   <div class="keyboard-box">
     <div class="simple-keyboard"></div>
   </div>
-  <form id="searchForm" class="searchForm" method="get" action="<?=$this->url($basicSearch)?>" name="searchForm" autocomplete="off">
+  <form id="searchForm" class="searchForm"<?php if ($this->searchRole ?? false): ?> role="search"<?php endif; ?> method="get" action="<?=$this->url($basicSearch)?>" name="searchForm" autocomplete="off">
     <?= $this->context($this)->renderInContext('search/searchTabs', ['searchTabs' => $tabConfig['tabs'], 'showCounts' => $tabConfig['showCounts']]); ?>
     <div class="searchForm-inputs search-form"><?php /* BDTD: classe search-form do CSS legado */ ?>
       <?php

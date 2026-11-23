@@ -220,7 +220,7 @@
       </div>
     <?php endif; ?>
     <?=$this->breadcrumbs()->render()?>
-    <div role="main" class="main">
+    <main class="main">
       <?php /* BDTD: páginas com faixas na largura total (página inicial) usam container-fluid */ ?>
       <div id="content" tabindex="-1" class="<?=$this->layout()->layoutFull ? 'container-fluid' : 'container'?>">
         <?php if (!($this->layout()->disableDefaultNotices ?? false)): ?>
@@ -228,7 +228,7 @@
         <?php endif; ?>
         <?=$this->layout()->content ?>
       </div>
-    </div>
+    </main>
     <?=$this->render('footer.phtml')?>
     <!-- MODAL IN CASE WE NEED ONE -->
     <div id="modal" class="modal fade hidden-print" tabindex="-1" role="dialog" aria-hidden="true">

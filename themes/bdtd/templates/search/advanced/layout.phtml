@@ -118,14 +118,14 @@
   <div role="search" class="bottom-search-form adv-search-form">
     <?php /* Busca simples desativada, com o botão para voltar a ela */ ?>
     <div class="search-form form-disabled">
-      <input disabled placeholder="Pesquise por teses e dissertações" class="search-input search-query" type="text" aria-label="<?=$this->transEscAttr('search_terms')?>">
-      <select disabled class="searchForm_type form-control" aria-label="<?=$this->transEscAttr('Search type')?>">
+      <input disabled aria-hidden="true" placeholder="Pesquise por teses e dissertações" class="search-input search-query" type="text" aria-label="<?=$this->transEscAttr('search_terms')?>">
+      <select disabled aria-hidden="true" class="searchForm_type form-control" aria-label="<?=$this->transEscAttr('Search type')?>">
         <option value="AllFields">Todos os campos</option>
         <option value="Title">Título</option>
         <option value="Author">Autor</option>
         <option value="Subject">Assunto</option>
       </select>
-      <button disabled type="button" class="btn contained-primary"><?=$this->transEsc('Find')?></button>
+      <button disabled aria-hidden="true" type="button" class="btn contained-primary"><?=$this->transEsc('Find')?></button>
       <a href="<?=$this->url('home')?>" class="btn outlined-primary" rel="nofollow"><?=$this->icon('bdtd-advanced')?> Fechar avançada</a>
     </div>
     <?php if ($helpTopics): ?>
