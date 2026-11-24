@@ -85,13 +85,13 @@
     <?php $resultsUrl = $this->url('search-results'); ?>
     <div class="indicators text-primary">
       <div class="item">
-        <i class="fa fa-university"></i>
+        <i class="fa fa-university" aria-hidden="true"></i>
         <a href="<?=$this->url('datasources-home')?>" class="data">
           <span id="institution" class="main-highlight">000</span>
           <span>Instituições</span>
         </a>
       </div>
-      <div class="item"> <i class="fa fa-book"></i>
+      <div class="item"> <i class="fa fa-book" aria-hidden="true"></i>
         <a href="<?=$this->escapeHtmlAttr($resultsUrl . '?limit=0&lookfor=%2A%3A%2A&type=AllFields&filter%5B%5D=format%3A%22doctoralThesis%22')?>" class="data">
           <span id="doctorThesis" class="main-highlight">000</span>
           <span>Teses</span>

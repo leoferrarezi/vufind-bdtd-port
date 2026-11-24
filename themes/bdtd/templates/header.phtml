@@ -4,7 +4,7 @@
 ?>
 <div class="container">
   <a class="logo-bdtd lang-<?=$this->escapeHtmlAttr($this->layout()->userLang)?>" href="<?=$this->url('home')?>">
-    <img class="logo-img" src="<?=$this->imageLink('logo.png')?>" alt="<?=$this->transEscAttr('Logo da BDTD')?>">
+    <img class="logo-img" src="<?=$this->imageLink('logo.png')?>" alt="<?=$this->transEscAttr('BDTD - Página inicial')?>">
   </a>
   <?php if (!isset($this->layout()->renderingError)): ?>
     <button type="button" class="navbar-toggle navbar-toggler" data-bs-toggle="collapse" data-bs-target="#header-collapse" aria-controls="header-collapse" aria-expanded="false" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
@@ -46,7 +46,7 @@
       </nav>
     </div>
     <a class="logo-ibict" href="https://www.gov.br/ibict">
-      <img class="logo-img" src="<?=$this->imageLink('ibict.png')?>" alt="<?=$this->transEscAttr('Logo do Ibict')?>">
+      <img class="logo-img" src="<?=$this->imageLink('ibict.png')?>" alt="<?=$this->transEscAttr('Portal do Ibict')?>">
     </a>
   <?php endif; ?>
 </div>

@@ -1,7 +1,7 @@
 <?php
 // BDTD: baseado em bootstrap5/templates/RecordDriver/DefaultRecord/data-authors.phtml
 // (VuFind 11.1); perfil Lattes como link com o ícone, como no legado.
-$formatProperty = function ($datafield, $name, $label) {
+$formatProperty = function ($datafield, $name, $label, $author = '') {
     if (count($datafield) == 0) {
         return '';
     }
@@ -12,7 +12,8 @@ $formatProperty = function ($datafield, $name, $label) {
             return '';
         }
         return '<a target="_blank" rel="noopener" class="author-property-profile" href="'
-            . $this->escapeHtmlAttr($url) . '"><img class="logoLattes" alt="lattes" src="'
+            . $this->escapeHtmlAttr($url) . '"><img class="logoLattes" alt="'
+            . $this->escapeHtmlAttr('Currículo Lattes de ' . rtrim($author, ', ')) . '" src="'
             . $this->escapeHtmlAttr($this->imageLink('lattes.gif')) . '" width="15"></a>';
     }
     $that = $this;
@@ -38,7 +39,7 @@ $formattedAuthors = [];
               $name = $field['name'];
               $prefix = $field['prefix'] ?? '';
               if (isset($dataFields[$name])) {
-                  echo $formatProperty($dataFields[$name], $name, $prefix);
+                  echo $formatProperty($dataFields[$name], $name, $prefix, $author);
               }
           }
         }

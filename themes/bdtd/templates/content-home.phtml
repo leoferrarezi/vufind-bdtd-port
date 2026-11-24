@@ -1,10 +1,10 @@
 <?php
   // BDTD: texto institucional e parceiros exibidos na página inicial.
   $partners = [
-    ['oasisbr', 'https://oasisbr.ibict.br/vufind/', 'partners/oasisbr.png', 'Oasisbr', 'Portal brasileiro de publicações e dados científicos em acesso aberto', 'logo do oasisbr'],
-    ['deposita', 'https://deposita.ibict.br/', 'partners/deposita.png', 'Deposita', 'Repositório Comum do Brasil', 'logo do deposita'],
-    ['lareferencia', 'https://www.lareferencia.info/pt/', 'partners/la_referencia.png', 'LA Referencia', 'Red de repositorios de acceso abierto a la ciencia', 'logo da LA Referencia'],
-    ['ndltd', 'https://ndltd.org/', 'partners/ndltd.png', 'NDLTD', 'The Networked Digital Library of Theses and Dissertations', 'logo da NDLTD'],
+    ['oasisbr', 'https://oasisbr.ibict.br/vufind/', 'partners/oasisbr.png', 'Oasisbr', 'Portal brasileiro de publicações e dados científicos em acesso aberto'],
+    ['deposita', 'https://deposita.ibict.br/', 'partners/deposita.png', 'Deposita', 'Repositório Comum do Brasil'],
+    ['lareferencia', 'https://www.lareferencia.info/pt/', 'partners/la_referencia.png', 'LA Referencia', 'Red de repositorios de acceso abierto a la ciencia'],
+    ['ndltd', 'https://ndltd.org/', 'partners/ndltd.png', 'NDLTD', 'The Networked Digital Library of Theses and Dissertations'],
   ];
 ?>
 <div class="about">
@@ -15,10 +15,10 @@
 </div>
 
 <div class="partners">
-  <?php foreach ($partners as [$class, $url, $image, $name, $description, $alt]): ?>
+  <?php foreach ($partners as [$class, $url, $image, $name, $description]): ?>
     <a class="partner <?=$class?>" href="<?=$this->escapeHtmlAttr($url)?>" target="_blank" rel="noopener noreferrer">
       <div class="partner-logo">
-        <img src="<?=$this->imageLink($image)?>" alt="<?=$this->escapeHtmlAttr($alt)?>">
+        <img src="<?=$this->imageLink($image)?>" alt="">
       </div>
       <div class="partner-desc">
         <h3 class="main-highlight"><?=$this->escapeHtml($name)?></h3>
