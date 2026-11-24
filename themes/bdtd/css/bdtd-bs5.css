@@ -536,6 +536,32 @@ footer {
 #rodape:focus {
   outline: none;
 }
+:focus-visible:not([tabindex="-1"]) {
+  outline: 3px solid #1a5544 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px #fff !important;
+}
+.gridjs .gridjs-input:focus-visible,
+.gridjs .gridjs-th:focus-visible {
+  outline-offset: -3px !important;
+  box-shadow: none !important;
+}
+.btn.contained-primary:focus-visible {
+  color: var(--color-neutral-50);
+  background-color: var(--color-hex-primary-base);
+}
+.btn.contained-secondary:focus-visible {
+  color: var(--color-neutral-50);
+  background-color: var(--color-hex-secondary-base);
+}
+.btn.outlined-primary:focus-visible {
+  color: var(--color-hex-primary-base);
+  border-color: var(--color-hex-primary-base);
+}
+.btn.outlined-secondary:focus-visible {
+  color: var(--color-hex-secondary-base);
+  border-color: var(--color-hex-secondary-base);
+}
 @media (max-width: 991.98px) {
   .skip-link-menu {
     display: none;
