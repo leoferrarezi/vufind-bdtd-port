@@ -64,7 +64,7 @@
 }
 /* :where() para não passar à frente do .facet-group .active do custom.css */
 :where(.facet-group) .js-facet-item {
-  color: #828282;
+  color: #747474;
   border-radius: 4px;
 }
 .facet-group .js-facet-item:hover {
@@ -584,4 +584,30 @@ p.bdtd-subtitle {
 }
 .search-info h2 {
   text-transform: uppercase;
+}
+:root {
+  --color-hex-primary-base: rgb(27, 128, 99);
+  --color-rgb-primary-base: 27, 128, 99;
+  --color-hiperlink-default: #0a70c0;
+}
+.search-box {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/bg.png");
+}
+footer {
+  color: #767676;
+}
+.card-results .author .publish-date,
+.card-results .author span,
+a.js-facet-item {
+  color: #747474;
+}
+.partners .oasisbr {
+  border-color: #4b833c;
+}
+.partners .oasisbr .partner-desc {
+  background-color: #4b833c;
+}
+.search-input,
+.gridjs input.gridjs-input {
+  border-color: #898989;
 }
