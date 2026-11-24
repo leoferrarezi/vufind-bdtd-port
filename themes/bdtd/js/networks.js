@@ -87,12 +87,21 @@
         search: {
           placeholder: "🔍 Buscar por...",
         },
+        sort: {
+          sortAsc: "Ordenar em ordem crescente",
+          sortDesc: "Ordenar em ordem decrescente",
+        },
         pagination: {
           previous: "Anterior",
           next: "Próximo",
+          navigate: (page, pages) => `Página ${page} de ${pages}`,
+          page: (page) => `Página ${page}`,
           showing: "😃 Mostrando",
           results: () => "Resultado",
         },
+        loading: "Carregando...",
+        noRecordsFound: "Nenhuma instituição encontrada",
+        error: "Erro ao carregar os dados",
       },
       data: allInstitutions.map((institution) => [
         institution.value,

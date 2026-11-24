@@ -74,8 +74,19 @@ const vegaOptions = {
     compiled: false,
     editor: false,
   },
+  i18n: {
+    CLICK_TO_VIEW_ACTIONS: 'Clique para ver as ações',
+    PNG_ACTION: 'Salvar como PNG',
+    SVG_ACTION: 'Salvar como SVG',
+  },
   fontSize: 14,
 };
+
+function embedChart(selector, spec) {
+  const heading = document.querySelector(selector).closest('.panel').querySelector('.panel-heading');
+  spec.description = 'Gráfico: ' + heading.textContent.trim();
+  return vegaEmbed(selector, spec, vegaOptions);
+}
 
 function setLoader(visible) {
   const loader = document.querySelector('#dashboard .loader');
@@ -151,7 +162,7 @@ async function createChartByYear(data) {
       ],
     },
   };
-  vegaEmbed('#visYear', yourVlSpec, vegaOptions);
+  embedChart('#visYear', yourVlSpec);
 }
 
 async function createChartByType(data) {
@@ -186,7 +197,7 @@ async function createChartByType(data) {
       ],
     },
   };
-  vegaEmbed('#visType', yourVlSpec, vegaOptions);
+  embedChart('#visType', yourVlSpec);
 }
 
 async function createChartByInstitution(data) {
@@ -227,7 +238,7 @@ async function createChartByInstitution(data) {
       ],
     },
   };
-  vegaEmbed('#visInst', yourVlSpec, vegaOptions);
+  embedChart('#visInst', yourVlSpec);
 }
 
 async function createChartByLanguage(data) {
@@ -265,7 +276,7 @@ async function createChartByLanguage(data) {
       ],
     },
   };
-  vegaEmbed('#visLang', yourVlSpec, vegaOptions);
+  embedChart('#visLang', yourVlSpec);
 }
 
 async function createChartByAuthor(data) {
@@ -311,7 +322,7 @@ async function createChartByAuthor(data) {
       ],
     },
   };
-  vegaEmbed('#visAuthor', yourVlSpec, vegaOptions);
+  embedChart('#visAuthor', yourVlSpec);
 }
 
 async function createChartByAdvisors(data) {
@@ -357,7 +368,7 @@ async function createChartByAdvisors(data) {
       ],
     },
   };
-  vegaEmbed('#visAdv', yourVlSpec, vegaOptions);
+  embedChart('#visAdv', yourVlSpec);
 }
 
 async function createWordCloud(data, lookfor, type) {
@@ -461,7 +472,7 @@ async function createChartByPpg(data) {
       ],
     },
   };
-  vegaEmbed('#visPpg', yourVlSpec, vegaOptions);
+  embedChart('#visPpg', yourVlSpec);
 }
 
 async function createChartByRights(data) {
@@ -498,7 +509,7 @@ async function createChartByRights(data) {
       ],
     },
   };
-  vegaEmbed('#visRights', yourVlSpec, vegaOptions);
+  embedChart('#visRights', yourVlSpec);
 }
 
 function cleanCNPqTag(fullTag) {
@@ -549,7 +560,7 @@ async function createChartByCnpq(data) {
       ],
     },
   };
-  vegaEmbed('#visCnpq', yourVlSpec, vegaOptions);
+  embedChart('#visCnpq', yourVlSpec);
 }
 
 function processForm(e) {
