@@ -419,6 +419,9 @@ footer {
   color: var(--color-hiperlink-default);
   font: inherit;
 }
+.toggle-me::after {
+  content: attr(data-tooltipbtn);
+}
 
 /*
  * Lista completa de uma faceta (janela "Ver todos ..."), como no legado: sem o filtro do
