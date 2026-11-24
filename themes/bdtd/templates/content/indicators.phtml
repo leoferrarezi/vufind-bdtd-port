@@ -48,8 +48,10 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <form data-form-filter class="flex flex-space-between">
-              <input name="filter" class="search form-control" placeholder="Filtre os documentos pelos indicadores abaixo">
-              <select style="width: auto;" class="searchForm_type form-control" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
+              <label for="indicators-filter" class="visually-hidden">Filtrar os indicadores por termo</label>
+              <input id="indicators-filter" name="filter" class="search form-control" placeholder="Filtre os documentos pelos indicadores abaixo">
+              <label for="indicators-type" class="visually-hidden"><?=$this->transEsc('Search type')?></label>
+              <select id="indicators-type" style="width: auto;" class="searchForm_type form-control" name="type" data-native-menu="false">
                 <option value="" selected="selected"><?=$this->transEsc('All Fields')?></option>
                 <option value="Title"><?=$this->transEsc('Title')?></option>
                 <option value="Author"><?=$this->transEsc('Author')?></option>

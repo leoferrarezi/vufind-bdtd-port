@@ -102,7 +102,6 @@
           'type' => 'text',
           'name' => 'lookfor',
           'value' => $this->lookfor,
-          'aria-label' => $this->translate('search_terms'),
         ];
         if ($placeholder = $this->searchbox()->getPlaceholderText($tabConfig['selected']['id'] ?? $this->searchClassId)) {
           $searchboxAttributes['placeholder'] = $this->translate($placeholder);
@@ -124,6 +123,7 @@
         }
       ?>
       <div class="searchForm-query">
+        <label for="searchForm_lookfor" class="visually-hidden"><?=$this->transEsc('search_terms')?></label>
         <input<?=$this->htmlAttributes($searchboxAttributes)?>>
         <div id="searchForm_controls">
           <button
@@ -160,7 +160,8 @@
         </div>
       </div>
       <?php if ($handlerCount > 1): ?>
-        <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
+        <label for="searchForm_type" class="visually-hidden"><?=$this->transEsc('Search type')?></label>
+        <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false">
           <?php $currentGroup = $insideGroup = false; ?>
           <?php foreach ($handlers as $handler): ?>
             <?php
