@@ -17,7 +17,11 @@
   }
 ?>
 <?php $this->headTitle($this->translate('Record Citations')); // BDTD: só o título da aba ?>
-<h1 class="visually-hidden"><?=$this->transEsc('Record Citations')?></h1>
+<?php if ($this->layout()->getTemplate() === 'layout/lightbox'): ?>
+  <h2 class="visually-hidden"><?=$this->transEsc('Record Citations')?></h2>
+<?php else: ?>
+  <h1 class="visually-hidden"><?=$this->transEsc('Record Citations')?></h1>
+<?php endif; ?>
 <?php if (count($citations) == 0): ?>
   <?=$this->transEsc('No citations are available for this record')?>
 <?php else: ?>

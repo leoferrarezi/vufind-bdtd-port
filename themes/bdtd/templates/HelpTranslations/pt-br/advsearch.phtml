@@ -7,7 +7,11 @@
 ?>
 
 <div class="fulltext">
-  <h1 class="text-primary">Dicas Avançadas de Pesquisa</h1>
+  <?php if ($this->layout()->getTemplate() === 'layout/lightbox'): ?>
+    <h2 class="text-primary h1">Dicas Avançadas de Pesquisa</h2>
+  <?php else: ?>
+    <h1 class="text-primary">Dicas Avançadas de Pesquisa</h1>
+  <?php endif; ?>
 
   <dl class="Content">
     <dt class="text-secondary">Campos de Busca</dt>
