@@ -14,7 +14,8 @@ $formatProperty = function ($datafield, $name, $label, $author = '') {
         return '<a target="_blank" rel="noopener" class="author-property-profile" href="'
             . $this->escapeHtmlAttr($url) . '"><img class="logoLattes" alt="'
             . $this->escapeHtmlAttr('Currículo Lattes de ' . rtrim($author, ', ')) . '" src="'
-            . $this->escapeHtmlAttr($this->imageLink('lattes.gif')) . '" width="15"></a>';
+            . $this->escapeHtmlAttr($this->imageLink('lattes.gif')) . '" width="15"><span class="visually-hidden"> ('
+            . $this->transEsc('opens_new_tab') . ')</span></a>';
     }
     $that = $this;
     $translate = function ($str) use ($that, $label) {

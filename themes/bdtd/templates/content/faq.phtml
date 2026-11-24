@@ -6,6 +6,7 @@
   $this->layout()->searchbox = false;
   // Barra de navegação vazia, como no legado
   $this->breadcrumbs()->set('', active: true);
+  $newTab = $this->transEsc('opens_new_tab');
 ?>
 
 <div class="fulltext">
@@ -38,7 +39,7 @@
             <p>
               Para que seu documento possa ser coletado pela BDTD é essencial que ele esteja disponível em umas das fontes de informação científica coletadas pelo Portal. Consulte no menu dentro da aba de Redes as <a href="<?=$this->url('datasources-home')?>">instituições participantes</a> para verificar se a fonte de informação em que seu documento foi publicado já faz parte da BDTD.</p>
 
-            <p>Caso a fonte de informação em que se encontra o seu documento ainda não seja coletada pela BDTD, sugerimos que, inicialmente, entre em contato com o gestor da instituição para que ele possa acionar a equipe da BDTD. Caso a sua instituição de defesa não tenha uma Biblioteca local de teses e dissertações ou um Repositório Digital orientamos que faça o auto depósito de seu trabalho no <a href="https://deposita.ibict.br/" target="_blank" rel="noopener noreferrer">Repositório Comum do Brasil (Deposita)</a>, o qual é coletado pela BDTD.</p>
+            <p>Caso a fonte de informação em que se encontra o seu documento ainda não seja coletada pela BDTD, sugerimos que, inicialmente, entre em contato com o gestor da instituição para que ele possa acionar a equipe da BDTD. Caso a sua instituição de defesa não tenha uma Biblioteca local de teses e dissertações ou um Repositório Digital orientamos que faça o auto depósito de seu trabalho no <a href="https://deposita.ibict.br/" target="_blank" rel="noopener noreferrer">Repositório Comum do Brasil (Deposita)<span class="visually-hidden"> (<?=$newTab?>)</span></a>, o qual é coletado pela BDTD.</p>
 
             <p>Para aqueles que obtiveram o grau de mestre ou doutor em instituição estrangeira, a orientação é que faça o auto depósito de seu trabalho no Deposita.
             </p>
@@ -50,7 +51,7 @@
           </h4>
           <div class="collapse" id="3">
             <p>
-              Não é possível realizar o autodepósito da tese ou dissertação, pois as informações contidas na BDTD são coletadas apenas das <a href="https://bdtd.ibict.br/vufind/datasources/home" target="_blank" rel="noopener noreferrer">instituições participantes</a>. Caso a sua instituição não esteja entre as instituições participantes, sugerimos que entre em contato com a biblioteca da instituição de defesa indicando a integração da mesma junto à BDTD, e para isso a instituição deve entrar em contato com nossa equipe demonstrando esse interesse, por meio do e-mail: equipebdtd@ibict.br.
+              Não é possível realizar o autodepósito da tese ou dissertação, pois as informações contidas na BDTD são coletadas apenas das <a href="<?=$this->url('datasources-home')?>">instituições participantes</a>. Caso a sua instituição não esteja entre as instituições participantes, sugerimos que entre em contato com a biblioteca da instituição de defesa indicando a integração da mesma junto à BDTD, e para isso a instituição deve entrar em contato com nossa equipe demonstrando esse interesse, por meio do e-mail: equipebdtd@ibict.br.
               .</p>
           </div>
         </div>
@@ -72,10 +73,10 @@
             <p>A BDTD possui uma lista de dicas para auxiliar na busca avançada, para conhecer mais sobre é só acessar: 
              <ul>
               <li>
-              <a href="https://bdtd.ibict.br/vufind/Help/Home?topic=search&_=1764177306" target="_blank" rel="noopener noreferrer">Dicas para buscas</a> 
+              <a href="<?=$this->url('help', ['topic' => 'search'])?>">Dicas para buscas</a> 
               </li>   
               <li>
-              <a href="https://bdtd.ibict.br/vufind/Help/Home?topic=advsearch&_=1764177373" target="_blank" rel="noopener noreferrer">Dicas avançadas de pesquisa</a></p>
+              <a href="<?=$this->url('help', ['topic' => 'advsearch'])?>">Dicas avançadas de pesquisa</a></p>
               </li>    
              </ul>
                
@@ -142,8 +143,8 @@
 
             <p>Contate-nos pelo email: <b>equipebdtd@ibict.br</b></p>
 
-            <p> <a href="/vufind/MODELO-DE-OFICIO.docx" target="_blank" rel="noopener noreferrer">
-                Link para o modelo de ofício</a>.
+            <p> <a href="/vufind/MODELO-DE-OFICIO.docx">
+                Link para o modelo de ofício<span class="visually-hidden"> (arquivo Word .docx)</span></a>.
             </p>
           </div>
         </div>
@@ -153,7 +154,7 @@
           </h4>
           <div class="collapse" id="12">
             <p>
-              Sendo coletada pela BDTD, a instituição por meio de sua biblioteca digital passa a contribuir para o aumento da visibilidade dos conteúdos compartilhados. Sendo a BDTD uma referência de infraestrutura informacional e interoperabilidade de dados a produção científica informacional ganha projeção, também, no cenário internacional por meio de acordos de compartilhamento de dados entre a BDTD e a <a href="https://ndltd.org/" target="_blank" rel="noopener noreferrer">Networked Digital Library of Theses and Dissertations (NDLTD)</a>, que é uma organização dedicada a promover a disseminação, preservação e uso das teses e dissertações eletrônicas.
+              Sendo coletada pela BDTD, a instituição por meio de sua biblioteca digital passa a contribuir para o aumento da visibilidade dos conteúdos compartilhados. Sendo a BDTD uma referência de infraestrutura informacional e interoperabilidade de dados a produção científica informacional ganha projeção, também, no cenário internacional por meio de acordos de compartilhamento de dados entre a BDTD e a <a href="https://ndltd.org/" target="_blank" rel="noopener noreferrer">Networked Digital Library of Theses and Dissertations (NDLTD)<span class="visually-hidden"> (<?=$newTab?>)</span></a>, que é uma organização dedicada a promover a disseminação, preservação e uso das teses e dissertações eletrônicas.
             </p>
           </div>
         </div>
@@ -175,10 +176,10 @@
               <?= $this->transEsc('Quais os metadados que mais precisam de atenção, na descrição das teses e dissertações?'); ?></a>
           </h4>
           <div class="collapse" id="14">
-            <p>Idioma: segue-se o formato segundo a <a href="https://iso639-3.sil.org/code_tables/639/data" target="_blank" rel="noopener noreferrer">ISO 639-3</a>, em que é utilizado apenas três letras para indicar o idioma do documento, por exemplo: <strong>por, eng, spa;</strong></p>
-            <p>Data: segue a <a href="https://www.iso.org/iso-8601-date-and-time-format.html" target="_blank" rel="noopener noreferrer">ISO 8601</a>, que consiste em ano, mês e dia, por exemplo: <strong>2019-05-30;</strong></p>
-            <p>Autor: Seguindo o Dublin Core (DC), “os nomes autores ou criadores deve ser devem ser indicados na mesma ordem que eles aparecem na publicação/recurso. Nomes pessoais devem ser indicados pelo sobrenome ou pelo primeiro nome de família, seguidos pelos prenomes. Na dúvida, atribuir o nome como aparece, e não invertê-lo” <a href="https://www.scielo.br/j/ci/a/tcW3q4WvNBQNTqTyLK8qfFF/#:~:text=Dublin%20Core%20pode%20ser%20definido,a%20descri%C3%A7%C3%A3o%20de%20recursos%20eletr%C3%B4nicos." target="_blank" rel="noopener noreferrer">(Souza; Vendrusculo; Melo, 2000);</a></p>
-            <p>Tipo: Seguindo o Dublin Core (DC), o tipo pode ser preenchido com texto, imagem, software, entre outros. No caso do texto, “recursos que na maioria das vezes são de natureza textual, cujo conteúdo é formado de palavras para leitura, mas pode incluir imagens de texto, tabelas e outros formatos do gênero texto. Exemplos: abstracts, anúncios, correspondências (e-mail, cartas, cartões postais), dicionários, home page, índices, manuais, manuscritos, minutas, monografias, panfletos, poemas, pré-print, proceedings, publicações seriadas (periódicos, jornais), relatórios técnicos”, teses e dissertações <a href="https://www.scielo.br/j/ci/a/tcW3q4WvNBQNTqTyLK8qfFF/#:~:text=Dublin%20Core%20pode%20ser%20definido,a%20descri%C3%A7%C3%A3o%20de%20recursos%20eletr%C3%B4nicos." target="_blank" rel="noopener noreferrer">(Souza; Vendrusculo; Melo, 2000).</a></p>
+            <p>Idioma: segue-se o formato segundo a <a href="https://iso639-3.sil.org/code_tables/639/data" target="_blank" rel="noopener noreferrer">ISO 639-3<span class="visually-hidden"> (<?=$newTab?>)</span></a>, em que é utilizado apenas três letras para indicar o idioma do documento, por exemplo: <strong>por, eng, spa;</strong></p>
+            <p>Data: segue a <a href="https://www.iso.org/iso-8601-date-and-time-format.html" target="_blank" rel="noopener noreferrer">ISO 8601<span class="visually-hidden"> (<?=$newTab?>)</span></a>, que consiste em ano, mês e dia, por exemplo: <strong>2019-05-30;</strong></p>
+            <p>Autor: Seguindo o Dublin Core (DC), “os nomes autores ou criadores deve ser devem ser indicados na mesma ordem que eles aparecem na publicação/recurso. Nomes pessoais devem ser indicados pelo sobrenome ou pelo primeiro nome de família, seguidos pelos prenomes. Na dúvida, atribuir o nome como aparece, e não invertê-lo” <a href="https://www.scielo.br/j/ci/a/tcW3q4WvNBQNTqTyLK8qfFF/#:~:text=Dublin%20Core%20pode%20ser%20definido,a%20descri%C3%A7%C3%A3o%20de%20recursos%20eletr%C3%B4nicos." target="_blank" rel="noopener noreferrer">(Souza; Vendrusculo; Melo, 2000);<span class="visually-hidden"> (<?=$newTab?>)</span></a></p>
+            <p>Tipo: Seguindo o Dublin Core (DC), o tipo pode ser preenchido com texto, imagem, software, entre outros. No caso do texto, “recursos que na maioria das vezes são de natureza textual, cujo conteúdo é formado de palavras para leitura, mas pode incluir imagens de texto, tabelas e outros formatos do gênero texto. Exemplos: abstracts, anúncios, correspondências (e-mail, cartas, cartões postais), dicionários, home page, índices, manuais, manuscritos, minutas, monografias, panfletos, poemas, pré-print, proceedings, publicações seriadas (periódicos, jornais), relatórios técnicos”, teses e dissertações <a href="https://www.scielo.br/j/ci/a/tcW3q4WvNBQNTqTyLK8qfFF/#:~:text=Dublin%20Core%20pode%20ser%20definido,a%20descri%C3%A7%C3%A3o%20de%20recursos%20eletr%C3%B4nicos." target="_blank" rel="noopener noreferrer">(Souza; Vendrusculo; Melo, 2000).<span class="visually-hidden"> (<?=$newTab?>)</span></a></p>
           </div>
         </div>
         <br />

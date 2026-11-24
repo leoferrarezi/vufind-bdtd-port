@@ -24,6 +24,7 @@
         <h3 class="main-highlight"><?=$this->escapeHtml($name)?></h3>
         <p><?=$this->escapeHtml($description)?></p>
       </div>
+      <span class="visually-hidden"> (<?=$this->transEsc('opens_new_tab')?>)</span>
     </a>
   <?php endforeach; ?>
 </div>

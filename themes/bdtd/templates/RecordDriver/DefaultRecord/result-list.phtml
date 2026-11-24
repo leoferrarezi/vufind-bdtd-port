@@ -173,8 +173,7 @@
             <?php foreach ($urls as $current): ?>
               <?php $count++; ?>
               <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new" rel="noopener">
-                <?=($current['url'] == $current['desc']) ? $this->transEsc('Access document') : $this->escapeHtml($current['desc'])?>
-                <?=count($urls) > 1 ? '(' . $count . ')' : ''?>
+                <?=($current['url'] == $current['desc']) ? $this->transEsc('Access document') : $this->escapeHtml($current['desc'])?><?=count($urls) > 1 ? ' (' . $count . ')' : ''?><span class="visually-hidden">: <?=$this->escapeHtml(trim((string)$this->driver->tryMethod('getTitle')))?> (<?=$this->transEsc('opens_new_tab')?>)</span>
               </a>
               <br>
             <?php endforeach; ?>

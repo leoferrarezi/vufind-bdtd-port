@@ -12,14 +12,14 @@
     <div class="flex-row-center gap-2">
       <?php foreach ($social as [$url, $image, $alt]): ?>
         <a href="<?=$this->escapeHtmlAttr($url)?>" target="_blank" rel="noopener noreferrer">
-          <img class="img-responsive img-fluid" src="<?=$this->imageLink($image)?>" alt="<?=$this->escapeHtmlAttr($alt)?>">
+          <img class="img-responsive img-fluid" src="<?=$this->imageLink($image)?>" alt="<?=$this->escapeHtmlAttr($alt)?>"><span class="visually-hidden"> (<?=$this->transEsc('opens_new_tab')?>)</span>
         </a>
       <?php endforeach; ?>
     </div>
   </div>
   <div class="assinatura">
     <a href="https://www.gov.br/ibict" target="_blank" rel="noopener noreferrer">
-      <img class="img-responsive img-fluid" src="<?=$this->imageLink('logoFooter.svg')?>" alt="Portal do Ibict - Ibict e Ministério da Ciência, Tecnologia e Inovação">
+      <img class="img-responsive img-fluid" src="<?=$this->imageLink('logoFooter.svg')?>" alt="Portal do Ibict - Ibict e Ministério da Ciência, Tecnologia e Inovação"><span class="visually-hidden"> (<?=$this->transEsc('opens_new_tab')?>)</span>
     </a>
   </div>
   <p>
