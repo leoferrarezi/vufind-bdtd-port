@@ -1,0 +1,26 @@
+<?php
+  $results = $this->params['results'] ?? null;
+  $label = $this->label;
+  if (array_intersect(['page-first', 'page-last'], $this->liClasses ?? [])) {
+    $label .= ' (' . $this->page . ')';
+  }
+  $liAttrs = $this->htmlAttributes([
+    'class' => array_merge(['page-item'], $this->liClasses ?? []),
+  ]);
+  $aAttrs = $this->htmlAttributes([
+    'class' => 'page-link',
+    'aria-label' => $label,
+    'href' => null !== $results
+      ? $results->getUrlQuery()->setPage($this->page)->getParams(false)
+      : $this->currentPath() . '?' . http_build_query(array_merge($this->params ?? [], ['page' => $this->page])),
+  ]);
+  if ($this->page === $this->current) {
+    $liAttrs->add('class', 'active');
+    $aAttrs['aria-current'] = 'page';
+  }
+?>
+<li<?=$liAttrs?>>
+  <a<?=$aAttrs?>>
+    <?=$contentHtml?>
+  </a>
+</li>
