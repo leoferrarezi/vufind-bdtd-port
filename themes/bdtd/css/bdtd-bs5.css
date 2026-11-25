@@ -422,6 +422,14 @@ footer {
 .toggle-me::after {
   content: attr(data-tooltipbtn);
 }
+button.filters-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+}
 
 /*
  * Lista completa de uma faceta (janela "Ver todos ..."), como no legado: sem o filtro do
