@@ -538,6 +538,17 @@ button.filters-toggle {
   font-size: calc(1.5rem * 0.857143);
   line-height: calc(1.5rem * 1.1);
 }
+button.btn-collapse {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
 
 /* Indicadores: ícone do total com a largura do fa-database do FontAwesome 4 */
 .icon-total-indicators {
