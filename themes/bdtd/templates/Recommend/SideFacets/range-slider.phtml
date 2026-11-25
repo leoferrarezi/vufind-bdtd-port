@@ -17,7 +17,7 @@
   <form class="facet-range-form" name="<?=$safeBaseId?>Filter" id="<?=$safeBaseId?>Filter" data-name="<?=$safeBaseId?>" data-filter-field="<?=$this->escapeHtmlAttr($this->facet['type'])?>range[]">
     <?=$results->getUrlQuery()->asHiddenFields(['page' => '/./', 'filter' => "/^{$this->title}:.*/"])?>
     <input type="hidden" name="<?=$this->escapeHtmlAttr($this->facet['type'])?>range[]" value="<?=$this->escapeHtmlAttr($this->title)?>">
-    <div class="date-fields">
+    <div class="date-fields" role="group" aria-labelledby="side-facet-title-<?=$safeBaseId?>">
       <?php $extraInputAttribs = ($this->facet['type'] == 'date') ? 'min="-9999" max="9999" ' : ''; ?>
       <div class="date-from">
         <label id="<?=$safeBaseId?>from-label" for="<?=$safeBaseId?>from">

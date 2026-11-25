@@ -47,8 +47,9 @@
 ?>
 
 <span class="<?=implode(' ', $classList) ?>">
-  <a class="main-link<?=$hasCheckbox ? ' icon-link' : ''?>" href="<?=$toggleUrl ?>" data-lightbox-ignore data-title="<?=$this->escapeHtmlAttr($this->facet['displayText']) ?>" data-count="<?=$this->facet['count'] ?>"<?php if ($this->facet['isApplied']): ?> title="<?=$this->transEscAttr('applied_filter') ?>"<?php endif;?>>
+  <a class="main-link<?=$hasCheckbox ? ' icon-link' : ''?>" href="<?=$toggleUrl ?>" data-lightbox-ignore data-title="<?=$this->escapeHtmlAttr($this->facet['displayText']) ?>" data-count="<?=$this->facet['count'] ?>">
     <span class="text">
+      <?php if ($this->facet['isApplied']): ?><span class="visually-hidden"><?=$this->transEsc('applied_filter') ?> </span><?php endif; ?>
       <?=$displayText ?>
     </span>
     <?php if (!$this->facet['isApplied'] && !$this->facet['isExcluded'] && null !== $this->facet['count']): ?>
