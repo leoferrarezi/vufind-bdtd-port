@@ -430,6 +430,29 @@ button.filters-toggle {
   font: inherit;
   text-align: inherit;
 }
+@media (min-width: 768px) {
+  .search-stats {
+    position: relative;
+  }
+  .search-filter-toggle {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 5;
+    margin: 4px 0 0;
+  }
+  .search-filter-toggle:not(:focus) {
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+}
 
 /*
  * Lista completa de uma faceta (janela "Ver todos ..."), como no legado: sem o filtro do

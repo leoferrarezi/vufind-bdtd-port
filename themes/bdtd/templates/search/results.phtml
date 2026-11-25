@@ -72,7 +72,7 @@
           <?=$this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
         <?php endif; ?>
         <?php if ($recommendations): ?>
-          <?=$this->component('show-search-sidebar-button')?>
+          <?=$this->component('show-search-sidebar-button', ['title' => ''])?>
         <?php endif; ?>
       <?php else: ?>
         <h2><?=$this->transEsc('nohit_heading')?></h2>
