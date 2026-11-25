@@ -307,6 +307,8 @@ footer {
   vertical-align: baseline;
 }
 .adv-search-form .adv-group {
+  float: none;
+  width: auto;
   margin: 0;
   padding: 0;
   border: 0;
@@ -342,6 +344,47 @@ footer {
   line-height: inherit;
   text-align: left;
   cursor: auto;
+}
+.adv-search-form .adv-group label {
+  font-weight: 700;
+}
+.adv-search .adv-term-remove,
+.adv-search-form .add_search_link,
+#groupPlaceHolder button {
+  padding-left: 0;
+  padding-right: 0;
+  border: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+.adv-search .adv-term-remove {
+  padding: 0 0 4.3px;
+  line-height: 1.7;
+}
+.adv-search-form .add_search_link,
+#groupPlaceHolder button {
+  background: none;
+  color: var(--color-hiperlink-default);
+  font-size: inherit;
+  line-height: inherit;
+  text-align: left;
+}
+#groupPlaceHolder button {
+  display: inline;
+  padding: 0;
+}
+.adv-search-form .add_search_link {
+  text-decoration: underline;
+}
+.adv-search-form .add_search_link:hover,
+#groupPlaceHolder button:hover {
+  color: var(--color-hiperlink-hover);
+}
+.adv-help-label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: 700;
 }
 .adv-search-form .adv-submit {
   margin: 0;

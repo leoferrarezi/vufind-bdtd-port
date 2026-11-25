@@ -35,6 +35,7 @@
   $this->assetManager()->appendScriptLink(
       $this->advancedSearchJsOverride ?? 'advanced_search.js'
   );
+  $this->assetManager()->appendScriptLink('bdtd-advanced-search.js');
   // Step 2: Build the page
   $this->assetManager()->appendScriptString(
       $this->partial(
@@ -130,13 +131,18 @@
     </div>
     <?php if ($helpTopics): ?>
       <div class="adv-help">
-        <label><?=$this->transEsc('Search Tips')?>:</label>
+        <span class="adv-help-label"><?=$this->transEsc('Search Tips')?>:</span>
         <?php foreach ($helpTopics as $topic => $title): ?>
           <a class="help-link" data-lightbox href="<?=$this->url('help', ['topic' => $topic])?>"><?=$this->transEsc($title)?></a>
         <?php endforeach; ?>
       </div>
     <?php endif; ?>
-    <form name="searchForm" id="advSearchForm" method="get" action="<?=$this->url($this->options->getSearchAction())?>">
+    <form name="searchForm" id="advSearchForm" method="get" action="<?=$this->url($this->options->getSearchAction())?>"
+      data-label-group="<?=$this->transEscAttr('adv_group_legend')?>"
+      data-label-lookfor="<?=$this->transEscAttr('adv_term_lookfor')?>"
+      data-label-type="<?=$this->transEscAttr('adv_term_type')?>"
+      data-label-remove="<?=$this->transEscAttr('adv_term_remove')?>"
+      data-label-add="<?=$this->transEscAttr('adv_add_search')?>">
       <?php foreach ($hiddenFilters as $key => $filter): ?>
         <?php foreach ($filter as $value): ?>
           <input type="hidden" name="hiddenFilters[]" value="<?=$this->escapeHtmlAttr($key) . ':' . $this->escapeHtmlAttr($value)?>">
@@ -157,7 +163,7 @@
       </div>
       <span id="groupPlaceHolder" class="hidden">
         <?=$this->icon('bdtd-advanced')?>
-        <a href="#" role="button"><?=$this->transEsc('add_search_group')?></a>
+        <button type="button"><?=$this->transEsc('add_search_group')?></button>
       </span>
       <?php /* fallback to a fixed set of search groups/fields if JavaScript is turned off */ ?>
       <div class="no-js">
@@ -168,7 +174,8 @@
             <?php if ($group == 0): ?>
               <div id="new_group_template">
             <?php endif; ?>
-            <div id="group<?=$group ?>" class="adv-group adv-group-form">
+            <fieldset id="group<?=$group ?>" class="adv-group adv-group-form">
+              <legend class="visually-hidden"><?=$this->transEsc('adv_group_legend', ['%%group%%' => $group + 1])?></legend>
               <div class="adv-group-match adv-group-match-form">
                 <label class="search_bool" for="search_bool<?=$group ?>"><?=$this->transEsc('search_match')?>:&nbsp;</label>
                 <select name="bool<?=$group ?>[]" id="search_bool<?=$group ?>" class="form-control">
@@ -185,28 +192,27 @@
                   <?php endif; ?>
                   <div id="search<?=$group . '_' . $search ?>" class="adv-search">
                     <div class="adv-search-inputs">
-                      <input name="lookfor<?=$group ?>[]" id="search_lookfor<?=$group . '_' . $search ?>" class="form-control" type="text"<?php if (isset($setQueries[$group][$search])): ?> value="<?=$this->escapeHtmlAttr($setQueries[$group][$search]->getString())?>"<?php endif; ?> aria-label="<?=$this->transEscAttr('search_terms')?>">
-                      <select class="adv-term-type form-control" name="type<?=$group ?>[]" aria-label="<?=$this->transEscAttr('Search type')?>">
+                      <input name="lookfor<?=$group ?>[]" id="search_lookfor<?=$group . '_' . $search ?>" class="form-control" type="text"<?php if (isset($setQueries[$group][$search])): ?> value="<?=$this->escapeHtmlAttr($setQueries[$group][$search]->getString())?>"<?php endif; ?> aria-label="<?=$this->transEscAttr('adv_term_lookfor', ['%%term%%' => $search + 1])?>">
+                      <select class="adv-term-type form-control" name="type<?=$group ?>[]" aria-label="<?=$this->transEscAttr('adv_term_type', ['%%term%%' => $search + 1])?>">
                         <?php foreach ($this->options->getAdvancedHandlers() as $searchVal => $searchDesc): ?>
                           <option value="<?=$this->escapeHtmlAttr($searchVal)?>"<?php if (isset($setQueries[$group][$search]) && $searchVal == $setQueries[$group][$search]->getHandler()): ?> selected<?php endif; ?>><?=$this->transEsc($searchDesc)?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>
-                    <a href="#" class="adv-term-remove hidden">
+                    <button type="button" class="adv-term-remove hidden" aria-label="<?=$this->transEscAttr('adv_term_remove', ['%%term%%' => $search + 1, '%%group%%' => $group + 1])?>">
                       <?=$this->icon('ui-remove') ?>
-                      <span class="visually-hidden"><?=$this->transEsc('remove') ?></span>
-                    </a>
+                    </button>
                   </div>
                   <?php if ($group == 0 && $search == 0): ?>
                     </div>
                     <div class="adv-fieds">
                       <?=$this->icon('bdtd-advanced', 'search_place_holder hidden')?>
-                      <a href="#" class="add_search_link hidden" role="button"><?=$this->transEsc('add_search')?></a>
+                      <button type="button" class="add_search_link hidden" aria-label="<?=$this->transEscAttr('adv_add_search', ['%%group%%' => $group + 1])?>"><?=$this->transEsc('add_search')?></button>
                     </div>
                   <?php endif; ?>
                 <?php endfor; ?>
               </div>
-            </div>
+            </fieldset>
             <?php if ($group == 0): ?>
               </div>
             <?php endif; ?>
@@ -264,7 +270,7 @@
 </div>
 <?php
 $script = <<<JS
-    $('#groupPlaceHolder a').click(function(e) {
+    $('#groupPlaceHolder button').click(function(e) {
       addGroup(null, null, null, true);
       return false;
     })
