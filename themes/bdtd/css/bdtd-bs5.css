@@ -634,6 +634,9 @@ button.btn-collapse {
   outline-offset: -3px !important;
   box-shadow: none !important;
 }
+.networks .gridjs-summary {
+  display: none;
+}
 .btn.contained-primary:focus-visible {
   color: var(--color-neutral-50);
   background-color: var(--color-hex-primary-base);
