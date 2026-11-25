@@ -82,16 +82,81 @@ const vegaOptions = {
   fontSize: 14,
 };
 
+function setStatus(text) {
+  const status = document.getElementById('indicatorsStatus');
+  if (status && status.textContent !== text) {
+    status.textContent = text;
+  }
+}
+
+function panelTitle(element) {
+  return element.closest('.panel').querySelector('.panel-heading').textContent.trim();
+}
+
+function renderDataTable(container, title, columns, rows) {
+  container.querySelectorAll(':scope > .indicators-data').forEach((old) => old.remove());
+  const wrapper = document.createElement('div');
+  const table = document.createElement('table');
+  table.className = 'table table-sm';
+  const caption = table.createCaption();
+  caption.textContent = title;
+  const headRow = table.createTHead().insertRow();
+  columns.forEach((column) => {
+    const th = document.createElement('th');
+    th.scope = 'col';
+    th.textContent = column;
+    headRow.appendChild(th);
+  });
+  const body = table.createTBody();
+  rows.forEach((cells) => {
+    const row = body.insertRow();
+    cells.forEach((cell, index) => {
+      const td = row.insertCell();
+      if (cell instanceof Node) {
+        td.appendChild(cell);
+      } else {
+        td.textContent = cell;
+      }
+      if (index > 0) {
+        td.className = 'text-end';
+      }
+    });
+  });
+  wrapper.className = 'indicators-data';
+  wrapper.appendChild(table);
+  container.appendChild(wrapper);
+  return wrapper;
+}
+
 function embedChart(selector, spec) {
-  const heading = document.querySelector(selector).closest('.panel').querySelector('.panel-heading');
-  spec.description = 'Gráfico: ' + heading.textContent.trim();
-  return vegaEmbed(selector, spec, vegaOptions);
+  const element = document.querySelector(selector);
+  const title = panelTitle(element);
+  spec.description = 'Gráfico: ' + title;
+  const fields = spec.encoding.tooltip;
+  renderDataTable(
+    element.parentElement,
+    title,
+    fields.map((field) => field.title),
+    spec.data.values.map((value) => fields.map((field) => (
+      field.type === 'quantitative' ? formatNumber(value[field.field]) : String(value[field.field])
+    )))
+  ).classList.add('visually-hidden');
+  return vegaEmbed(selector, spec, vegaOptions).then((result) => {
+    const summary = element.querySelector('summary');
+    if (summary) {
+      summary.setAttribute('aria-label', 'Ações do gráfico: ' + title);
+    }
+    return result;
+  });
 }
 
 function setLoader(visible) {
   const loader = document.querySelector('#dashboard .loader');
   if (loader) {
     loader.style.display = visible ? 'block' : 'none';
+  }
+  if (visible) {
+    setStatus('Carregando indicadores...');
   }
 }
 
@@ -371,6 +436,14 @@ async function createChartByAdvisors(data) {
   embedChart('#visAdv', yourVlSpec);
 }
 
+function keywordSearchUrl(keyword, lookfor, type) {
+  let search = VuFind.path + '/Search/Results?';
+  if (lookfor && type) {
+    search = search + `lookfor=${encodeURIComponent(lookfor)}&type=${encodeURIComponent(type)}&`;
+  }
+  return search + `filter%5B%5D=dc.subject.por.fl_str_mv%3A%22${encodeURIComponent(keyword)}%22`;
+}
+
 async function createWordCloud(data, lookfor, type) {
   // data = data.slice(0, 10)
 
@@ -401,6 +474,20 @@ async function createWordCloud(data, lookfor, type) {
     trigger: 'manual',
   });
   const visAuthor = document.getElementById('cloudTopic');
+  const title = panelTitle(visAuthor);
+  visAuthor.setAttribute('role', 'img');
+  visAuthor.setAttribute('aria-label', 'Nuvem de palavras: ' + title);
+  renderDataTable(
+    visAuthor.parentElement,
+    title,
+    ['Palavra-chave', t('Count')],
+    data.map((item) => {
+      const link = document.createElement('a');
+      link.href = keywordSearchUrl(item.translated, lookfor, type);
+      link.textContent = item.translated;
+      return [link, formatNumber(item.count)];
+    })
+  ).classList.add('visually-hidden-focusable');
   const options = {
     list: values,
     gridSize: 16,
@@ -409,13 +496,7 @@ async function createWordCloud(data, lookfor, type) {
     fontFamily: 'Lato, sans-serif',
     color: '#000',
     click: function (item) {
-      let search = VuFind.path + '/Search/Results?';
-      if (lookfor && type) {
-        search = search + `lookfor=${encodeURIComponent(lookfor)}&type=${encodeURIComponent(type)}&`;
-      }
-      search =
-        search + `filter%5B%5D=dc.subject.por.fl_str_mv%3A%22${encodeURIComponent(item[0])}%22`;
-      window.location = search;
+      window.location = keywordSearchUrl(item[0], lookfor, type);
     },
     hover: function (item, dimension) {
       tippyElement.setContent(item[0] + ': ' + formatNumber(item[2]));
@@ -576,10 +657,13 @@ async function loadData(lookfor, type) {
     indicators = await getIndicatorsFromVufindApi(lookfor, type);
   } catch (error) {
     console.error(error);
+    setStatus('Não foi possível carregar os indicadores.');
     return;
   }
   const endTime = performance.now();
   fillSearchResults(lookfor, indicators, type, endTime, initTime);
+  const total = formatNumber(indicators.resultCount) + ' documentos';
+  setStatus(lookfor ? 'Indicadores atualizados: ' + total + ' para a busca "' + lookfor + '"' : 'Indicadores carregados: ' + total);
   createChartByYear(indicators.facets.publishDate);
   createChartByType(indicators.facets.format);
   createChartByInstitution(indicators.facets.institution);

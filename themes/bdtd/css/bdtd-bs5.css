@@ -554,6 +554,22 @@ button.btn-collapse {
 .icon-total-indicators {
   width: auto;
 }
+.indicators-data {
+  width: 100%;
+  margin-top: 1rem;
+}
+.indicators-data caption {
+  caption-side: top;
+  color: inherit;
+  font-weight: 700;
+}
+.indicators .indicators-data a {
+  color: var(--color-hiperlink-default);
+  text-decoration: underline;
+}
+.indicators .indicators-data a:hover {
+  color: var(--color-hiperlink-hover);
+}
 
 /*
  * Busca avançada: ícones FontAwesome dos contadores e atalhos com a largura dos do
