@@ -22,6 +22,7 @@ return [
     ],
     'js' => [
         ['file' => 'bdtd-modal.js'],
+        ['file' => 'bdtd-jumpmenu.js'],
     ],
     'favicon' => 'icons/favicon.ico',
     // Matomo com os campos da LA Referencia (identificador OAI, país, repositório)
