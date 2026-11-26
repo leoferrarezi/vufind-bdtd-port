@@ -1,37 +1,56 @@
-/* BDTD: a aba de metadados do registro começa fechada, abre no clique e fecha no clique seguinte */
+/* Aba de metadados do registro: começa fechada e funciona como botão de mostrar/esconder (Enter e Espaço).
+   O record.js do VuFind abre a aba também no foco, por isso o foco e o clique não chegam a ele; o clique
+   que ele mesmo dispara ao aplicar o #hash da URL só abre. */
 (function openCloseTab() {
-  let wasOpen = false;
+  const selector = '.record-tabs .nav-tabs a';
 
-  function openPane(tab) {
-    const li = tab.parentNode;
-    const top = tab.closest('.record-tabs');
-    if (!li || !top) {
-      return null;
-    }
-    const pane = top.querySelector('.tab-pane.' + li.dataset.tab + '-tab.active');
-    return tab.classList.contains('active') && pane ? pane : null;
+  function tabFrom(event) {
+    return event.target instanceof Element ? event.target.closest(selector) : null;
   }
 
-  // O record.js abre a aba já no foco (antes do clique), então o estado é lido no pointerdown
-  document.addEventListener('pointerdown', (event) => {
-    const tab = event.target.closest('.record-tabs .nav-tabs a');
-    wasOpen = tab !== null && openPane(tab) !== null;
+  function setOpen(tab, open) {
+    const li = tab.parentNode;
+    const top = tab.closest('.record-tabs');
+    const pane = top ? top.querySelector('.tab-pane.' + li.dataset.tab + '-tab') : null;
+    if (!pane) {
+      return;
+    }
+    pane.classList.toggle('active', open);
+    tab.classList.toggle('active', open);
+    tab.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const url = window.location.pathname + window.location.search + (open ? '#' + li.dataset.tab : '');
+    window.history.replaceState({}, '', url);
+  }
+
+  function toggle(tab) {
+    setOpen(tab, !tab.classList.contains('active'));
+  }
+
+  document.addEventListener('focus', (event) => {
+    if (tabFrom(event)) {
+      event.stopImmediatePropagation();
+    }
   }, true);
 
   document.addEventListener('click', (event) => {
-    // Só cliques do usuário: o record.js também clica na aba ao aplicar o #hash da URL
-    const tab = event.isTrusted ? event.target.closest('.record-tabs .nav-tabs a') : null;
-    const pane = tab ? openPane(tab) : null;
-    if (!pane || (event.detail > 0 && !wasOpen)) {
+    const tab = tabFrom(event);
+    if (!tab) {
       return;
     }
     event.preventDefault();
     event.stopImmediatePropagation();
-    pane.classList.remove('active');
-    tab.classList.remove('active');
-    tab.setAttribute('aria-selected', 'false');
-    if (window.location.hash) {
-      window.history.replaceState({}, '', window.location.pathname + window.location.search);
+    if (event.isTrusted) {
+      toggle(tab);
+    } else {
+      setOpen(tab, true);
+    }
+  }, true);
+
+  document.addEventListener('keydown', (event) => {
+    const tab = event.key === ' ' ? tabFrom(event) : null;
+    if (tab) {
+      event.preventDefault();
+      toggle(tab);
     }
   }, true);
 })();
