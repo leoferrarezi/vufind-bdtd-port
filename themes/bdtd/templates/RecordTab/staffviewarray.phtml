@@ -5,12 +5,20 @@
     $this->headTitle($this->translate('Staff View') . ': ' . $this->driver->getBreadcrumb());
 ?>
 <table class="citation table table-striped"><?php /* BDTD: classe do legado */ ?>
+  <caption class="visually-hidden"><?=$this->transEsc('Staff View')?></caption>
   <?php
-    $rawData = $this->driver->getRawData();
+    $rawData = array_filter(
+      $this->driver->getRawData(),
+      fn ($field) => !preg_match(
+        '/^(_version_|spelling|spellingShingle|title_fullStr|title_full_unstemmed|title_sort|identifier_str_mv)$|_(facet|browse)$/',
+        $field
+      ),
+      ARRAY_FILTER_USE_KEY
+    );
   ?>
   <?php foreach ($rawData as $field => $values): ?>
     <tr>
-      <th><?=$this->escapeHtml($field)?></th>
+      <th scope="row"><?=$this->escapeHtml($field)?></th>
       <td><?=$this->printArrayHtml($values)?></td>
     </tr>
   <?php endforeach; ?>
