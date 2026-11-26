@@ -40,6 +40,8 @@
       fill("total", masterThesis + doctoralThesis);
     } catch (error) {
       console.error(error);
+    } finally {
+      document.querySelector(".search-box .indicators")?.removeAttribute("aria-busy");
     }
   });
 })();
